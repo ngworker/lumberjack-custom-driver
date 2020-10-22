@@ -1,7 +1,7 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { LumberjackModule } from '@ngworker/lumberjack';
-import { LumberjackCustomDriverModule } from '@ngworker/lumberjack-custom-driver';
+import { <name-capitalize-united>Module } from '@ngworker/<name-hyphen>';
 
 import { AppComponent } from './app.component';
 
@@ -9,7 +9,7 @@ describe('AppComponent', () => {
   let spectator: Spectator<AppComponent>;
   const createComponent = createComponentFactory({
     component: AppComponent,
-    imports: [LumberjackModule.forRoot(), LumberjackCustomDriverModule.forRoot({})],
+    imports: [LumberjackModule.forRoot(), <name-capitalize-united>Module.forRoot({})],
   });
 
   beforeEach(() => {

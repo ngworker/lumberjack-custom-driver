@@ -8,7 +8,7 @@ module.exports = (config) => {
     ...baseConfig,
     coverageIstanbulReporter: {
       ...baseConfig.coverageIstanbulReporter,
-      dir: path.join(__dirname, '../../../coverage/libs/ngworker/lumberjack-custom-driver'),
+      dir: path.join(__dirname, '../../../coverage/libs/ngworker/<name-hyphen>'),
     },
   });
 };

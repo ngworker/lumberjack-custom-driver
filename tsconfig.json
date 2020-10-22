@@ -18,7 +18,7 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@internal/test-util": ["libs/internal/test-util/src/public_api.ts"],
-      "@ngworker/lumberjack-custom-driver": ["libs/ngworker/lumberjack-custom-driver/src/public-api.ts"]
+      "@ngworker/<name-hyphen>": ["libs/ngworker/<name-hyphen>/src/public-api.ts"]
     }
   },
   "angularCompilerOptions": {

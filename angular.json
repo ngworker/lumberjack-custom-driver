@@ -123,30 +123,30 @@
         }
       }
     },
-    "ngworker-lumberjack-custom-driver": {
+    "ngworker-<name-hyphen>": {
       "projectType": "library",
-      "root": "libs/ngworker/lumberjack-custom-driver",
-      "sourceRoot": "libs/ngworker/lumberjack-custom-driver/src",
+      "root": "libs/ngworker/<name-hyphen>",
+      "sourceRoot": "libs/ngworker/<name-hyphen>/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/ngworker/lumberjack-custom-driver/tsconfig.lib.json",
-            "project": "libs/ngworker/lumberjack-custom-driver/ng-package.json"
+            "tsConfig": "libs/ngworker/<name-hyphen>/tsconfig.lib.json",
+            "project": "libs/ngworker/<name-hyphen>/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/ngworker/lumberjack-custom-driver/tsconfig.lib.prod.json"
+              "tsConfig": "libs/ngworker/<name-hyphen>/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/ngworker/lumberjack-custom-driver/src/test.ts",
-            "tsConfig": "libs/ngworker/lumberjack-custom-driver/tsconfig.spec.json",
-            "karmaConfig": "libs/ngworker/lumberjack-custom-driver/karma.conf.js"
+            "main": "libs/ngworker/<name-hyphen>/src/test.ts",
+            "tsConfig": "libs/ngworker/<name-hyphen>/tsconfig.spec.json",
+            "karmaConfig": "libs/ngworker/<name-hyphen>/karma.conf.js"
           },
           "configurations": {
             "ci": {
@@ -160,10 +160,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/ngworker/lumberjack-custom-driver/tsconfig.lib.json",
-              "libs/ngworker/lumberjack-custom-driver/tsconfig.spec.json"
+              "libs/ngworker/<name-hyphen>/tsconfig.lib.json",
+              "libs/ngworker/<name-hyphen>/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ngworker/lumberjack-custom-driver/**"]
+            "exclude": ["**/node_modules/**", "!libs/ngworker/<name-hyphen>/**"]
           }
         }
       }

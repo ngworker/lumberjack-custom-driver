@@ -1,5 +1,5 @@
 {
-  "name": "lumberjack-custom-driver",
+  "name": "<name-hyphen>",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -13,16 +13,16 @@
     "hooks:pre-commit": "node hooks/pre-commit.js",
     "commit": "git-cz",
     "release:first": "yarn release -- --first-release",
-    "build:lib": "ng build ngworker-lumberjack-custom-driver --prod && npx copy README.md ./dist/ngworker/lumberjack-custom-driver",
-    "test:lib": "ng test ngworker-lumberjack-custom-driver",
+    "build:lib": "ng build ngworker-<name-hyphen> --prod && npx copy README.md ./dist/ngworker/<name-hyphen>",
+    "test:lib": "ng test ngworker-<name-hyphen>",
     "test:lib:ci": "yarn test:lib --configuration=ci",
     "test:internal": "ng test internal-test-util",
     "test:internal:ci": "yarn test:internal --configuration=ci",
-    "release": "cd libs/ngworker/lumberjack-custom-driver && standard-version --infile ../../../CHANGELOG.md",
-    "publish": "cd dist/ngworker/lumberjack-custom-driver && npm publish",
+    "release": "cd libs/ngworker/<name-hyphen> && standard-version --infile ../../../CHANGELOG.md",
+    "publish": "cd dist/ngworker/<name-hyphen> && npm publish",
     "ci": "yarn install && yarn lint && yarn build:lib && yarn test:internal:ci && yarn test:lib:ci && yarn build && yarn test:ci && yarn e2e",
     "format": "npx prettier --config prettier.config.js --write \"**/*.*\" \"!dist/**\" \"!yarn.lock\"",
-    "use:dist": "json -I -f tsconfig.json -e 'this.compilerOptions.paths[\"@ngworker/lumberjack-custom-driver\"] = [\"dist/ngworker/lumberjack-custom-driver\"]'"
+    "use:dist": "json -I -f tsconfig.json -e 'this.compilerOptions.paths[\"@ngworker/<name-hyphen>\"] = [\"dist/ngworker/<name-hyphen>\"]'"
   },
   "private": true,
   "dependencies": {
@@ -78,19 +78,6 @@
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
-    }
-  },
-  "lint-staged": {
-    "*.{js,json,css,scss,ts,html,component.html}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn hooks:pre-commit && lint-staged && yarn lint",
-      "pre-push": "yarn test:lib:ci"
     }
   }
 }
