@@ -1,4 +1,4 @@
-# Lumberjack
+# <name-capitalize>
 
 ## Code scaffolding
 

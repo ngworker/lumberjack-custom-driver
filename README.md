@@ -1,3 +1,33 @@
+# AUTHORS SECTION
+
+This section is meant to help `driver` authors with their first steps using this template.
+
+> TODO: Remove this section when the repository is completely setup.
+
+## Terraform the repository
+
+To customize the repo and enable some pre-configure tools run `AUTHOR_SETUP` script in the terminal at your root directory.
+
+Use the name of your driver instead of `lumberjack-custom-driver` in the above script.
+
+The name of the driver should be in hyphen-case. For example, `lumberjack-supersonic-driver`.
+
+## Replace TODOS
+
+Search across the repository files and attend the TODO comments with steps to perform.
+
+- README.md (here)
+
+## Rename root rename root folder
+
+Manually rename the root folder of your project to the name of the driver. (same as name used in script)
+
+```bash
+node AUTHOR_SETUP.js lumberjack-custom-driver
+```
+
+> End of AUTHORS SECTION. Delete everything above
+
 <p align="center">
  <img width="40%" height="40%" src="./logo.svg">
 </p>
@@ -16,7 +46,7 @@
 
 > This an awesome <name-capitalize> 🚀
 
-<name-capitalize> is a custom log driver for [ngworker/lumberjack](https://github.com/ngworker/lumberjack). It is used to send logs over SOME protocol.
+`<name-capitalize>` is a custom log driver for [ngworker/lumberjack](https://github.com/ngworker/lumberjack). It is used to send logs over SOME protocol.
 
 ## Features
 
