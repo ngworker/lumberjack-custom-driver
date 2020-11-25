@@ -17,8 +17,8 @@
     "module": "esnext",
     "lib": ["es2018", "dom"],
     "paths": {
-      "@internal/test-util": ["libs/internal/test-util/src/public_api.ts"],
-      "@ngworker/<name-hyphen>": ["libs/ngworker/<name-hyphen>/src/public-api.ts"]
+      "@internal/test-util": ["libs/internal/test-util/src/index.ts"],
+      "@ngworker/<name-hyphen>": ["libs/ngworker/<name-hyphen>/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

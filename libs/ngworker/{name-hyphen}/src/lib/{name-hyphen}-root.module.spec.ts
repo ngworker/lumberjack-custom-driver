@@ -8,10 +8,6 @@ describe(<name-capitalize-united>RootModule.name, () => {
   });
 
   it('does not guard the first injector that registers it', () => {
-    // tslint:disable-next-line: no-null-keyword
-    const optionalAngularDependency = null;
-
-    // tslint:disable-next-line: no-any
-    expect(() => new <name-capitalize-united>RootModule(optionalAngularDependency as any)).not.toThrow();
+    expect(() => new <name-capitalize-united>RootModule()).not.toThrow();
   });
 });

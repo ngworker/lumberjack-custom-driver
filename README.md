@@ -12,6 +12,10 @@ Use the name of your driver instead of `lumberjack-custom-driver` in the above s
 
 The name of the driver should be in hyphen-case. For example, `lumberjack-supersonic-driver`.
 
+```bash
+node AUTHOR_SETUP.js lumberjack-custom-driver
+```
+
 ## Replace TODOS
 
 Search across the repository files and attend the TODO comments with steps to perform.
@@ -21,10 +25,6 @@ Search across the repository files and attend the TODO comments with steps to pe
 ## Rename root rename root folder
 
 Manually rename the root folder of your project to the name of the driver. (same as name used in script)
-
-```bash
-node AUTHOR_SETUP.js lumberjack-custom-driver
-```
 
 > End of AUTHORS SECTION. Delete everything above
 

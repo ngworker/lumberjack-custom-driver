@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { <name-capitalize-united>RootModule } from './<name-hyphen>-root.module';
-import { <name-capitalize-united>Config, <name-capitalize-united>ConfigToken } from './<name-hyphen>.config';
+import { <name-capitalize-united>Config, <name-cammel>ConfigToken } from './<name-hyphen>.config';
 
 @NgModule()
 export class <name-capitalize-united>Module {
@@ -10,7 +10,7 @@ export class <name-capitalize-united>Module {
       ngModule: <name-capitalize-united>RootModule,
       providers: [
         {
-          provide: <name-capitalize-united>ConfigToken,
+          provide: <name-cammel>ConfigToken,
           useValue: config,
         },
       ],

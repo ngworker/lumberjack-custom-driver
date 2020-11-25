@@ -2,14 +2,17 @@ import { TestBed } from '@angular/core/testing';
 
 import { expectNgModuleToBeGuarded, resolveDependency } from '@internal/test-util';
 import {
-  defaultLogDriverConfig,
   LogDriver,
-  LogDriverToken,
+  LogDriverConfig,
+  logDriverToken,
+  lumberjackLogConfigToken,
+  LumberjackLogEntryLevel,
   LumberjackLogLevel,
   LumberjackModule,
 } from '@ngworker/lumberjack';
 
 import { <name-capitalize-united>Config } from './<name-hyphen>.config';
+import { <name-capitalize-united>Options } from './<name-hyphen>.options';
 import { <name-capitalize-united>Module } from './<name-hyphen>.module';
 import { <name-capitalize-united> } from './<name-hyphen>';
 
@@ -30,7 +33,7 @@ const create<name-capitalize-united> = (
     ],
   });
 
-  const [<name-cammel>] = (resolveDependency(LogDriverToken) as unknown) as LogDriver[];
+  const [<name-cammel>] = (resolveDependency(logDriverToken) as unknown) as LogDriver[];
 
   return <name-cammel>;
 };

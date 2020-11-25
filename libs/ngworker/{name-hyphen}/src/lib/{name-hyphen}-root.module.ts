@@ -1,8 +1,8 @@
-import { Inject, NgModule, NgZone, Optional, SkipSelf } from '@angular/core';
+import { Inject, NgModule, Optional, SkipSelf } from '@angular/core';
 
-import { LogDriverConfig, LogDriverConfigToken, LogDriverToken } from '@ngworker/lumberjack';
+import { LogDriverConfig, logDriverConfigToken, logDriverToken } from '@ngworker/lumberjack';
 
-import { <name-capitalize-united>Config, <name-capitalize-united>ConfigToken } from './<name-hyphen>.config';
+import { <name-capitalize-united>Config, <name-cammel>ConfigToken } from './<name-hyphen>.config';
 import { <name-capitalize-united> } from './<name-hyphen>';
 
 export function <name-cammel>Factory(
@@ -20,19 +20,20 @@ export function <name-cammel>Factory(
 @NgModule({
   providers: [
     {
-      deps: [LogDriverConfigToken, <name-capitalize-united>ConfigToken],
+      deps: [logDriverConfigToken, <name-cammel>ConfigToken],
       multi: true,
-      provide: LogDriverToken,
+      provide: logDriverToken,
       useFactory: <name-cammel>Factory,
     },
   ],
 })
 export class <name-capitalize-united>RootModule {
   constructor(
+    // tslint:disable: no-any no-null-keyword
     @Optional()
     @SkipSelf()
     @Inject(<name-capitalize-united>RootModule)
-    maybeNgModuleFromParentInjector?: <name-capitalize-united>RootModule
+    maybeNgModuleFromParentInjector: <name-capitalize-united>RootModule = null as any
   ) {
     if (maybeNgModuleFromParentInjector) {
       throw new Error(
