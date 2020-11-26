@@ -7,4 +7,6 @@ export const <name-cammel>ConfigToken: InjectionToken<<name-capitalize-united>Co
 );
 
 // tslint:disable-next-line: no-empty-interface
-export interface <name-capitalize-united>Config extends LogDriverConfig {}
+export interface <name-capitalize-united>Config extends LogDriverConfig {
+  someNeededOption: string
+}
