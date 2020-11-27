@@ -31,8 +31,8 @@ const filesToIgnore = {
 function replaceFileNames(dir, calculatedTokens) {
   _replaceFileNames(dir, calculatedTokens);
 
-  console.info(fgWhite, 'Path driver names swap... Completed');
-  console.info(fgWhite, 'Content driver names swap... Completed');
+  console.info(fgWhite, 'Replacing path driver names... Completed');
+  console.info(fgWhite, 'Replacing content driver names... Completed');
 }
 
 function _replaceFileNames(dir, calculatedTokens) {

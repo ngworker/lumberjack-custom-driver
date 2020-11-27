@@ -11,6 +11,7 @@ const replaceFileNames = require('./replace-file-names');
 const restorePackageJson = require('./restore-package-json');
 const activateGithubActions = require('./activate-github-actions');
 const fixLintIssues = require('./fix-lint-issues');
+const commitChanges = require('./commit-changes');
 const installPackages = require('./install-packages');
 const renameRootFolder = require('./rename-root-folder');
 const { createTokens } = require('./tokenizer');
@@ -25,7 +26,7 @@ async function setup() {
     const driverName = answers['driver-name'];
     const organizationName = answers['organization-name'];
 
-    console.info(fgYellow, '\nPlease wait. This will take a minute ⏳\n');
+    console.info(fgYellow, '\nPlease be patient. This will take a couple of minutes ⏳\n');
 
     const calculatedTokens = createTokens(driverName, organizationName);
 
@@ -40,6 +41,8 @@ async function setup() {
     fixLintIssues();
 
     renameRootFolder(calculatedTokens.hyphenName);
+
+    commitChanges();
 
     console.info(fgGreen, '✅ Success: You can now implement your driver 🚀\n');
   } else {

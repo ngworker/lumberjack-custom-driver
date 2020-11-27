@@ -12,7 +12,7 @@ function renameRootFolder(hyphenName) {
 
   // fs.renameSync(process.cwd(), newPath);
 
-  console.info(fgWhite, 'Rename root folder... Completed\n');
+  console.info(fgWhite, 'Renaming root folder... Completed\n');
 }
 
 module.exports = renameRootFolder;

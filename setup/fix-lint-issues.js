@@ -7,7 +7,7 @@ const { fgWhite } = require('./colors');
 function fixLintIssues() {
   execSync('yarn lint --fix');
 
-  console.info(fgWhite, 'Fix linting issue... Completed');
+  console.info(fgWhite, 'Fixing linting issue... Completed');
 }
 
 module.exports = fixLintIssues;

@@ -8,7 +8,7 @@ function restorePackageJson() {
     fs.rmdirSync('node_modules ', { recursive: true });
     fs.renameSync('~package.json', 'package.json');
 
-    console.info(fgWhite, 'package.json update... Completed');
+    console.info(fgWhite, 'Restoring package.json... Completed');
   } catch (error) {
     console.log(error);
   }
