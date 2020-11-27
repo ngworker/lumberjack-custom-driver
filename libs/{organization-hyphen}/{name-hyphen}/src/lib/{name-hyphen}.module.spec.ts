@@ -9,7 +9,7 @@ import {
   LumberjackLogEntryLevel,
   LumberjackLogLevel,
   LumberjackModule,
-} from '@ngworker/lumberjack';
+} from '@<organization-hyphen>/lumberjack';
 
 import { <name-capitalize-united>Config } from './<name-hyphen>.config';
 import { <name-capitalize-united>Options } from './<name-hyphen>.options';

@@ -1,4 +1,4 @@
-import { LumberjackLogEntryLevel, LumberjackLogLevel, LumberjackTimeService } from '@ngworker/lumberjack';
+import { LumberjackLogEntryLevel, LumberjackLogLevel, LumberjackTimeService } from '@<organization-hyphen>/lumberjack';
 
 import { resolveDependency } from '../resolve-dependency';
 

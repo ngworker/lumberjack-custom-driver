@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Angular version ${{ matrix.angular-version }}
-        uses: ngworker/angular-versions-action@v2
+        uses: <organization-hyphen>/angular-versions-action@v2
         with:
           angular_version: ${{ matrix.angular-version }}
 
@@ -48,7 +48,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: <name-hyphen>-package
-          path: dist/ngworker/{name-hyphen}
+          path: dist/<organization-hyphen>/{name-hyphen}
           if-no-files-found: error
 
   lib:
@@ -66,7 +66,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Angular version ${{ matrix.angular-version }}
-        uses: ngworker/angular-versions-action@v2
+        uses: <organization-hyphen>/angular-versions-action@v2
         with:
           angular_version: ${{ matrix.angular-version }}
 
@@ -101,7 +101,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Angular version ${{ matrix.angular-version }}
-        uses: ngworker/angular-versions-action@v2
+        uses: <organization-hyphen>/angular-versions-action@v2
         with:
           angular_version: ${{ matrix.angular-version }}
 
@@ -117,11 +117,11 @@ jobs:
             ${{ runner.os }}-node-${{ matrix.node-version }}-angular-${{ matrix.angular-version }}-yarn-
       - run: yarn install
 
-      - run: yarn delete-path-alias @ngworker/<name-hyphen>
+      - run: yarn delete-path-alias @<organization-hyphen>/<name-hyphen>
       - uses: actions/download-artifact@v2
         with:
           name: <name-hyphen>-package
-          path: node_modules/@ngworker/<name-hyphen>
+          path: node_modules/@<organization-hyphen>/<name-hyphen>
       - run: npx ngcc || true
 
       - run: yarn test:ci
@@ -143,7 +143,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Angular version ${{ matrix.angular-version }}
-        uses: ngworker/angular-versions-action@v2
+        uses: <organization-hyphen>/angular-versions-action@v2
         with:
           angular_version: ${{ matrix.angular-version }}
 
@@ -159,11 +159,11 @@ jobs:
             ${{ runner.os }}-node-${{ matrix.node-version }}-angular-${{ matrix.angular-version }}-yarn-
       - run: yarn install
 
-      - run: yarn delete-path-alias @ngworker/<name-hyphen>
+      - run: yarn delete-path-alias @<organization-hyphen>/<name-hyphen>
       - uses: actions/download-artifact@v2
         with:
           name: <name-hyphen>-package
-          path: node_modules/@ngworker/<name-hyphen>
+          path: node_modules/@<organization-hyphen>/<name-hyphen>
       - run: npx ngcc || true
 
       - name: Update Chrome

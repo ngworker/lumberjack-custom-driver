@@ -1,5 +1,5 @@
 {
-  "name": "@ngworker/<name-hyphen>",
+  "name": "@<organization-hyphen>/<name-hyphen>",
   "version": "0.0.0",
   "peerDependencies": {
     "@angular/core": ">=9.0.7"
@@ -24,11 +24,11 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/ngworker/<name-hyphen>/issue"
+    "url": "https://github.com/<organization-hyphen>/<name-hyphen>/issue"
   },
-  "homepage": "https://github.com/ngworker/<name-hyphen>#readme",
+  "homepage": "https://github.com/<organization-hyphen>/<name-hyphen>#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ngworker/<name-hyphen>"
+    "url": "https://github.com/<organization-hyphen>/<name-hyphen>"
   }
 }

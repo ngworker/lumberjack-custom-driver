@@ -6,13 +6,13 @@
     "callable-types": true,
     "class-name": true,
     "component-class-suffix": true,
-    "component-selector": [true, "element", "ngworker", "kebab-case"],
+    "component-selector": [true, "element", "<organization-hyphen>", "kebab-case"],
     "curly": true,
     "deprecation": {
       "severity": "warn"
     },
     "directive-class-suffix": true,
-    "directive-selector": [true, "attribute", "ngworker", "camelCase"],
+    "directive-selector": [true, "attribute", "<organization-hyphen>", "camelCase"],
     "forin": true,
     "import-blacklist": [true, "rxjs/Rx"],
     "interface-name": false,
@@ -66,7 +66,7 @@
       "@angular/fire/database",
       "@angular/material",
       "@internal",
-      "@ngworker",
+      "@<organization-hyphen>",
       "zone.js"
     ],
     "no-string-literal": false,
@@ -80,7 +80,7 @@
       true,
       {
         "grouped-imports": true,
-        "groups": ["^@(?!(ngworker|internal)).*|^[a-zA-Z].*", "^@(ngworker|internal).*", "^\\.\\./", "^\\./.*"]
+        "groups": ["^@(?!(<organization-hyphen>|internal)).*|^[a-zA-Z].*", "^@(<organization-hyphen>|internal).*", "^\\.\\./", "^\\./.*"]
       }
     ],
     "object-literal-sort-keys": false,

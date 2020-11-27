@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { LogDriver } from '@ngworker/lumberjack';
+import { LogDriver } from '@<organization-hyphen>/lumberjack';
 
 import { <name-capitalize-united>Config, <name-camel>ConfigToken } from './<name-hyphen>.config';
 

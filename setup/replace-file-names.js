@@ -12,6 +12,8 @@ const {
   lowercaseToken,
   camelToken,
   uppercaseUnderscoreToken,
+  organizationHyphenToken,
+  organizationHyphenFileToken,
 } = require('./tokenizer');
 
 const filesToIgnore = {
@@ -68,6 +70,7 @@ function replaceNameOccurrences(filePath, calculatedTokens) {
     lowercaseName,
     camelName,
     uppercaseUnderscoreName,
+    organizationName,
   } = calculatedTokens;
 
   let modifiedContent = fileContent;
@@ -77,6 +80,7 @@ function replaceNameOccurrences(filePath, calculatedTokens) {
   modifiedContent = modifiedContent.replace(new RegExp(lowercaseToken, 'g'), lowercaseName);
   modifiedContent = modifiedContent.replace(new RegExp(camelToken, 'g'), camelName);
   modifiedContent = modifiedContent.replace(new RegExp(uppercaseUnderscoreToken, 'g'), uppercaseUnderscoreName);
+  modifiedContent = modifiedContent.replace(new RegExp(organizationHyphenToken, 'g'), organizationName);
 
   fs.writeFileSync(filePath, modifiedContent);
 }
@@ -88,10 +92,11 @@ function replaceNameOccurrences(filePath, calculatedTokens) {
  * @returns
  */
 function renameFilenamePlaceholder(filePath, calculatedTokens) {
-  const { hyphenName } = calculatedTokens;
+  const { hyphenName, organizationName } = calculatedTokens;
 
-  if (filePath.includes(hyphenFileToken)) {
-    const newPath = filePath.replace(new RegExp(hyphenFileToken, 'g'), hyphenName);
+  if (filePath.includes(hyphenFileToken) || filePath.includes(organizationHyphenFileToken)) {
+    let newPath = filePath.replace(new RegExp(hyphenFileToken, 'g'), hyphenName);
+    newPath = newPath.replace(new RegExp(organizationHyphenFileToken, 'g'), organizationName);
 
     fs.rmdirSync(newPath, { recursive: true });
     fs.renameSync(filePath, newPath);

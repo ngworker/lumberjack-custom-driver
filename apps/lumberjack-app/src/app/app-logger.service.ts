@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { LumberjackLogger, LumberjackService, LumberjackTimeService } from '@ngworker/lumberjack';
+import { LumberjackLogger, LumberjackService, LumberjackTimeService } from '@<organization-hyphen>/lumberjack';
 
 @Injectable({
   providedIn: 'root',

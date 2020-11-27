@@ -5,6 +5,8 @@ const capitalizedUnitedToken = '<name-capitalize-united>';
 const lowercaseToken = '<name-lowercase>';
 const camelToken = '<name-camel>';
 const uppercaseUnderscoreToken = '<name-uppercase-underscore>';
+const organizationHyphenToken = '<organization-hyphen>';
+const organizationHyphenFileToken = '{organization-hyphen}';
 
 function createTokens(driverName, organizationName) {
   const splittedName = driverName.split('-');
@@ -37,5 +39,7 @@ module.exports = {
   lowercaseToken,
   camelToken,
   uppercaseUnderscoreToken,
+  organizationHyphenToken,
+  organizationHyphenFileToken,
   createTokens,
 };
