@@ -6,25 +6,21 @@ This section is meant to help `driver` authors with their first steps using this
 
 ## Terraform the repository
 
-To customize the repo and enable some pre-configure tools run `AUTHOR_SETUP` script in the terminal at your root directory.
+To customize the repo and enable some pre-configure tools run the `setup` script in the terminal at your root directory.
 
-Use the name of your driver instead of `lumberjack-custom-driver` in the above script.
-
-The name of the driver should be in hyphen-case. For example, `lumberjack-supersonic-driver`.
+The `setup` script will ask for the required information.
 
 ```bash
-node AUTHOR_SETUP.js lumberjack-custom-driver
+node setup
 ```
 
 ## Replace TODOS
 
-Search across the repository files and attend the TODO comments with steps to perform.
+Search across the repository files and solve the TODO comments.
+
+### Files with TODOS
 
 - README.md (here)
-
-## Rename root rename root folder
-
-Manually rename the root folder of your project to the name of the driver. (same as name used in script)
 
 > End of AUTHORS SECTION. Delete everything above
 
@@ -70,8 +66,8 @@ TODO: Update the features of this driver
 
 <name-capitalize-united> is published as the `@<organization-hyphen>/<name-hyphen>` package.
 
-| Toolchain   | Command                               |
-| ----------- | ------------------------------------- |
+| Toolchain   | Command                                            |
+| ----------- | -------------------------------------------------- |
 | Angular CLI | `ng add @<organization-hyphen>/<name-hyphen>`      |
 | NPM CLI     | `npm install @<organization-hyphen>/<name-hyphen>` |
 | Nx CLI      | `nx add @<organization-hyphen>/<name-hyphen>`      |
