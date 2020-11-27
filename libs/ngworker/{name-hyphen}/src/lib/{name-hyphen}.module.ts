@@ -7,7 +7,7 @@ import { <name-capitalize-united>RootModule } from './<name-hyphen>-root.module'
 @NgModule()
 export class <name-capitalize-united>Module {
   /**
-   * Pass a full HTTP driver configuration.
+   * Pass a full <name-capitalize-united> configuration.
    */
   static forRoot(config: <name-capitalize-united>Config): ModuleWithProviders<<name-capitalize-united>RootModule> {
     return {
@@ -22,7 +22,7 @@ export class <name-capitalize-united>Module {
   }
 
   /**
-   * Pass options exclusive to the HTTP driver configuration, but fall back on
+   * Pass options exclusive to the <name-capitalize-united> configuration, but fall back on
    * the log driver config for common options.
    */
   static withOptions(options: <name-capitalize-united>Options): ModuleWithProviders<<name-capitalize-united>RootModule> {

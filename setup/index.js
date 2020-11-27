@@ -1,10 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const process = require('process');
 
 const fgGreen = '\x1b[32m';
 const fgYellow = '\x1b[33m';
 const fgWhite = '\x1b[37m';
+const fgRed = '\x1b[31m';
 
 const driverName = process.argv.slice(2)[0] || 'lumberjack-custom-driver';
 
@@ -38,12 +40,36 @@ const cammelName = splittedName
   .join('');
 const uppercaseUnderscoreName = splittedName.map((name) => name.toUpperCase()).join('_');
 
+function setup() {
+  if (fs.existsSync(path.join(process.cwd(), '~package.json'))) {
+    console.info(fgYellow, '\nPlease wait. This will take a minute ⏳\n');
+
+    swapFileNames(process.cwd());
+
+    restorePackageJson();
+
+    activateGithubActions();
+
+    fixLintIssues();
+
+    renameRootFolder();
+
+    console.info(fgGreen, '✅ Success: You can now implement your driver 🚀\n');
+  } else {
+    console.error(
+      fgRed,
+      '🔥 Error: The template is in an unstable state.\n\n Possible Fixes: - Revert the changes.\n                 - Clone the repository again.\n                 - Execute the script from the template root'
+    );
+  }
+}
+
 function swapFileNames(dir) {
   _swapFileNames(dir);
 
   console.info(fgWhite, 'Path driver names swap... Completed');
   console.info(fgWhite, 'Content driver names swap... Completed');
 }
+
 function _swapFileNames(dir) {
   try {
     fs.readdirSync(dir).forEach(function (file) {
@@ -100,25 +126,11 @@ function renameFilenamePlaceholder(filePath) {
   return filePath;
 }
 
-function updatePackageJson() {
+function restorePackageJson() {
   try {
-    const rawData = fs.readFileSync('package.json');
-    let packageJson = JSON.parse(rawData.toString('utf8'));
-    packageJson = {
-      ...packageJson,
-      'lint-staged': {
-        '*.{js,json,css,scss,ts,html,component.html}': ['prettier --write', 'git add'],
-      },
-      husky: {
-        hooks: {
-          'commit-msg': 'commitlint -e $HUSKY_GIT_PARAMS',
-          'pre-commit': 'yarn hooks:pre-commit && lint-staged && yarn lint',
-          'pre-push': 'yarn test:lib:ci',
-        },
-      },
-    };
-
-    fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2));
+    fs.rmSync('package.json');
+    fs.rmdirSync('node_modules ', { recursive: true });
+    fs.renameSync('~package.json', 'package.json');
 
     console.info(fgWhite, 'package.json update... Completed');
   } catch (error) {
@@ -142,25 +154,13 @@ function fixLintIssues() {
 }
 
 function renameRootFolder() {
-  const splittedPath = __dirname.split('/');
+  const splittedPath = process.cwd().split('/');
   splittedPath[splittedPath.length - 1] = hyphenName;
   const newPath = path.normalize(splittedPath.join('/'));
 
-  fs.renameSync(__dirname, newPath);
+  // fs.renameSync(process.cwd(), newPath);
 
   console.info(fgWhite, 'Rename root folder... Completed\n');
 }
 
-console.info(fgYellow, '\nPlease wait. This will take a minute ⏳\n');
-
-swapFileNames(__dirname);
-
-updatePackageJson();
-
-activateGithubActions();
-
-fixLintIssues();
-
-renameRootFolder();
-
-console.info(fgGreen, '✅ Success: You can now implement your driver 🚀\n');
+setup();
