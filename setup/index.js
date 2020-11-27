@@ -1,58 +1,45 @@
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 const process = require('process');
+const inquirer = require('inquirer');
 
-const fgGreen = '\x1b[32m';
-const fgYellow = '\x1b[33m';
-const fgWhite = '\x1b[37m';
-const fgRed = '\x1b[31m';
+const questions = require('./questions');
+const { fgRed, fgGreen, fgYellow, fgWhite } = require('./colors');
+const replaceFileNames = require('./replace-file-names');
+const restorePackageJson = require('./restore-package-json');
+const activateGithubActions = require('./activate-github-actions');
+const fixLintIssues = require('./fix-lint-issues');
+const installPackages = require('./install-packages');
+const renameRootFolder = require('./rename-root-folder');
+const { createTokens } = require('./tokenizer');
 
-const driverName = process.argv.slice(2)[0] || 'lumberjack-custom-driver';
-
-const filesToIgnore = {
-  '.git': 'true',
-  '.DS_Store': 'true',
-  '.gitignore': 'true',
-  '.editorconfig': 'true',
-  'AUTHOR_SETUP.js': 'true',
-  'logo.svg': 'true',
-  node_modules: 'true',
-  'prettier.config.js': 'true',
-  dist: 'true',
-};
-
-const capitalizedToken = '<name-capitalize>';
-const hyphenToken = '<name-hyphen>';
-const hyphenFileToken = '{name-hyphen}';
-const capitalizedUnitedToken = '<name-capitalize-united>';
-const lowercaseToken = '<name-lowercase>';
-const cammelToken = '<name-cammel>';
-const uppercaseUnderscoreToken = '<name-uppercase-underscore>';
-
-const splittedName = driverName.split('-');
-const capitalizedName = splittedName.map((name) => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
-const hyphenName = driverName;
-const capitalizedUnitedName = splittedName.map((name) => name.charAt(0).toUpperCase() + name.slice(1)).join('');
-const lowercaseName = splittedName.map((name) => name.toLowerCase()).join(' ');
-const cammelName = splittedName
-  .map((name, index) => (index != 0 ? name.charAt(0).toUpperCase() + name.slice(1) : name))
-  .join('');
-const uppercaseUnderscoreName = splittedName.map((name) => name.toUpperCase()).join('_');
-
-function setup() {
+async function setup() {
   if (fs.existsSync(path.join(process.cwd(), '~package.json'))) {
+    console.info(fgWhite, 'Getting everything ready...');
+
+    installPackages();
+
+    const answers = await inquirer.prompt(questions);
+    const driverName = answers['driver-name'];
+    const organizationName = answers['organization-name'];
+
     console.info(fgYellow, '\nPlease wait. This will take a minute ⏳\n');
 
-    swapFileNames(process.cwd());
+    const calculatedTokens = createTokens(driverName, organizationName);
+
+    replaceFileNames(process.cwd(), calculatedTokens);
 
     restorePackageJson();
 
     activateGithubActions();
 
+    installPackages();
+
     fixLintIssues();
 
-    renameRootFolder();
+    renameRootFolder(calculatedTokens.hyphenName);
 
     console.info(fgGreen, '✅ Success: You can now implement your driver 🚀\n');
   } else {
@@ -61,106 +48,6 @@ function setup() {
       '🔥 Error: The template is in an unstable state.\n\n Possible Fixes: - Revert the changes.\n                 - Clone the repository again.\n                 - Execute the script from the template root'
     );
   }
-}
-
-function swapFileNames(dir) {
-  _swapFileNames(dir);
-
-  console.info(fgWhite, 'Path driver names swap... Completed');
-  console.info(fgWhite, 'Content driver names swap... Completed');
-}
-
-function _swapFileNames(dir) {
-  try {
-    fs.readdirSync(dir).forEach(function (file) {
-      let filePath = path.normalize(path.join(dir, file));
-      filePath = renameFilenamePlaceholder(filePath);
-      if (!filesToIgnore[file]) {
-        const isDir = fs.lstatSync(filePath).isDirectory();
-        if (isDir) {
-          _swapFileNames(filePath);
-        } else {
-          replaceNameOccurrences(filePath);
-        }
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-/**
- * Replace placeholders with driver name in file content
- *
- * @param {string} fileContent
- *
- */
-function replaceNameOccurrences(filePath) {
-  const fileContent = fs.readFileSync(filePath).toString('utf8');
-
-  let modifiedContent = fileContent;
-  modifiedContent = modifiedContent.replace(new RegExp(capitalizedToken, 'g'), capitalizedName);
-  modifiedContent = modifiedContent.replace(new RegExp(hyphenToken, 'g'), hyphenName);
-  modifiedContent = modifiedContent.replace(new RegExp(capitalizedUnitedToken, 'g'), capitalizedUnitedName);
-  modifiedContent = modifiedContent.replace(new RegExp(lowercaseToken, 'g'), lowercaseName);
-  modifiedContent = modifiedContent.replace(new RegExp(cammelToken, 'g'), cammelName);
-  modifiedContent = modifiedContent.replace(new RegExp(uppercaseUnderscoreToken, 'g'), uppercaseUnderscoreName);
-
-  fs.writeFileSync(filePath, modifiedContent);
-}
-
-/**
- * Rename filename with placeholder using driver's name
- *
- * @param {string} filePath
- * @returns
- */
-function renameFilenamePlaceholder(filePath) {
-  if (filePath.includes(hyphenFileToken)) {
-    const newPath = filePath.replace(new RegExp(hyphenFileToken, 'g'), hyphenName);
-
-    fs.rmdirSync(newPath, { recursive: true });
-    fs.renameSync(filePath, newPath);
-    return newPath;
-  }
-  return filePath;
-}
-
-function restorePackageJson() {
-  try {
-    fs.rmSync('package.json');
-    fs.rmdirSync('node_modules ', { recursive: true });
-    fs.renameSync('~package.json', 'package.json');
-
-    console.info(fgWhite, 'package.json update... Completed');
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function activateGithubActions() {
-  if (fs.existsSync('github')) {
-    fs.rmdirSync('.github', { recursive: true });
-    fs.renameSync('github', '.github');
-  }
-
-  console.info(fgWhite, 'Github Actions activation... Completed');
-}
-
-function fixLintIssues() {
-  execSync('yarn lint --fix');
-
-  console.info(fgWhite, 'Fix linting issue... Completed');
-}
-
-function renameRootFolder() {
-  const splittedPath = process.cwd().split('/');
-  splittedPath[splittedPath.length - 1] = hyphenName;
-  const newPath = path.normalize(splittedPath.join('/'));
-
-  // fs.renameSync(process.cwd(), newPath);
-
-  console.info(fgWhite, 'Rename root folder... Completed\n');
 }
 
 setup();

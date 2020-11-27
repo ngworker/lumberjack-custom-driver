@@ -1,0 +1,103 @@
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+
+const { fgWhite } = require('./colors');
+const {
+  capitalizedToken,
+  hyphenToken,
+  hyphenFileToken,
+  capitalizedUnitedToken,
+  lowercaseToken,
+  camelToken,
+  uppercaseUnderscoreToken,
+} = require('./tokenizer');
+
+const filesToIgnore = {
+  '.git': true,
+  '.DS_Store': true,
+  '.gitignore': true,
+  '.editorconfig': true,
+  setup: true,
+  'logo.svg': true,
+  node_modules: true,
+  'prettier.config.js': true,
+  dist: true,
+};
+
+function replaceFileNames(dir, calculatedTokens) {
+  _replaceFileNames(dir, calculatedTokens);
+
+  console.info(fgWhite, 'Path driver names swap... Completed');
+  console.info(fgWhite, 'Content driver names swap... Completed');
+}
+
+function _replaceFileNames(dir, calculatedTokens) {
+  try {
+    fs.readdirSync(dir).forEach(function (file) {
+      let filePath = path.normalize(path.join(dir, file));
+      filePath = renameFilenamePlaceholder(filePath, calculatedTokens);
+      if (!filesToIgnore[file]) {
+        const isDir = fs.lstatSync(filePath).isDirectory();
+        if (isDir) {
+          _replaceFileNames(filePath, calculatedTokens);
+        } else {
+          replaceNameOccurrences(filePath, calculatedTokens);
+        }
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+/**
+ * Replace placeholders with driver name in file content
+ *
+ * @param {string} fileContent
+ *
+ */
+function replaceNameOccurrences(filePath, calculatedTokens) {
+  const fileContent = fs.readFileSync(filePath).toString('utf8');
+
+  const {
+    capitalizedName,
+    hyphenName,
+    capitalizedUnitedName,
+    lowercaseName,
+    camelName,
+    uppercaseUnderscoreName,
+  } = calculatedTokens;
+
+  let modifiedContent = fileContent;
+  modifiedContent = modifiedContent.replace(new RegExp(capitalizedToken, 'g'), capitalizedName);
+  modifiedContent = modifiedContent.replace(new RegExp(hyphenToken, 'g'), hyphenName);
+  modifiedContent = modifiedContent.replace(new RegExp(capitalizedUnitedToken, 'g'), capitalizedUnitedName);
+  modifiedContent = modifiedContent.replace(new RegExp(lowercaseToken, 'g'), lowercaseName);
+  modifiedContent = modifiedContent.replace(new RegExp(camelToken, 'g'), camelName);
+  modifiedContent = modifiedContent.replace(new RegExp(uppercaseUnderscoreToken, 'g'), uppercaseUnderscoreName);
+
+  fs.writeFileSync(filePath, modifiedContent);
+}
+
+/**
+ * Rename filename with placeholder using driver's name
+ *
+ * @param {string} filePath
+ * @returns
+ */
+function renameFilenamePlaceholder(filePath, calculatedTokens) {
+  const { hyphenName } = calculatedTokens;
+
+  if (filePath.includes(hyphenFileToken)) {
+    const newPath = filePath.replace(new RegExp(hyphenFileToken, 'g'), hyphenName);
+
+    fs.rmdirSync(newPath, { recursive: true });
+    fs.renameSync(filePath, newPath);
+    return newPath;
+  }
+  return filePath;
+}
+
+module.exports = replaceFileNames;

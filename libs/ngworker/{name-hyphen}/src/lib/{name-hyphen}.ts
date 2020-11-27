@@ -2,11 +2,11 @@ import { Inject, Injectable } from '@angular/core';
 
 import { LogDriver } from '@ngworker/lumberjack';
 
-import { <name-capitalize-united>Config, <name-cammel>ConfigToken } from './<name-hyphen>.config';
+import { <name-capitalize-united>Config, <name-camel>ConfigToken } from './<name-hyphen>.config';
 
 @Injectable()
 export class <name-capitalize-united> implements LogDriver {
-  constructor(@Inject(<name-cammel>ConfigToken) public config: <name-capitalize-united>Config) {}
+  constructor(@Inject(<name-camel>ConfigToken) public config: <name-capitalize-united>Config) {}
 
   logCritical(logEntry: string): void {}
 

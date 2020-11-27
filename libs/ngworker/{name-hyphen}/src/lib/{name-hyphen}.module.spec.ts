@@ -48,9 +48,9 @@ const create<name-capitalize-united> = (
     ],
   });
 
-  const [<name-cammel>] = (resolveDependency(logDriverToken) as unknown) as LogDriver[];
+  const [<name-camel>] = (resolveDependency(logDriverToken) as unknown) as LogDriver[];
 
-  return <name-cammel>;
+  return <name-camel>;
 };
 
 const create<name-capitalize-united>WithOptions = (
@@ -70,9 +70,9 @@ const create<name-capitalize-united>WithOptions = (
     ],
   });
 
-  const [<name-cammel>] = (resolveDependency(logDriverToken) as unknown) as LogDriver[];
+  const [<name-camel>] = (resolveDependency(logDriverToken) as unknown) as LogDriver[];
 
-  return <name-cammel>;
+  return <name-camel>;
 };
 
 describe(<name-capitalize-united>Module.name, () => {
@@ -82,26 +82,26 @@ describe(<name-capitalize-united>Module.name, () => {
 
   describe(<name-capitalize-united>Module.forRoot.name, () => {
     it('provides the <name-capitalize-united>', () => {
-      const <name-cammel> = create<name-capitalize-united>();
+      const <name-camel> = create<name-capitalize-united>();
 
-      expect(<name-cammel>).toBeInstanceOf(<name-capitalize-united>);
+      expect(<name-camel>).toBeInstanceOf(<name-capitalize-united>);
     });
 
     it('registers the specified log driver configuration', () => {
       const expectedConfig = create<name-capitalize-united>Config([LumberjackLogLevel.Error]);
 
-      const <name-cammel> = create<name-capitalize-united>({ config: expectedConfig });
+      const <name-camel> = create<name-capitalize-united>({ config: expectedConfig });
 
-      const actualConfig = <name-cammel>.config;
+      const actualConfig = <name-camel>.config;
       expect(actualConfig).toEqual(expectedConfig);
     });
 
     it('registers a default level configuration if none is specified', () => {
       const custom<name-capitalize-united>Config = create<name-capitalize-united>Config([LumberjackLogLevel.Verbose]);
 
-      const <name-cammel> = create<name-capitalize-united>({ config: custom<name-capitalize-united>Config });
+      const <name-camel> = create<name-capitalize-united>({ config: custom<name-capitalize-united>Config });
 
-      const actualConfig = <name-cammel>.config;
+      const actualConfig = <name-camel>.config;
       const logConfig = resolveDependency(lumberjackLogConfigToken);
       const defaultLogDriverConfig: LogDriverConfig = {
         levels: logConfig.levels,
@@ -113,29 +113,29 @@ describe(<name-capitalize-united>Module.name, () => {
     it('does register the specified log driver configuration when the lumberjack module is imported after the <name-capitalize-united> module', () => {
       const expectedConfig = create<name-capitalize-united>Config([LumberjackLogLevel.Debug]);
 
-      const <name-cammel> = create<name-capitalize-united>({
+      const <name-camel> = create<name-capitalize-united>({
         config: expectedConfig,
         isLumberjackModuleImportedFirst: false,
       });
 
-      const actualConfig = <name-cammel>.config;
+      const actualConfig = <name-camel>.config;
       expect(actualConfig).toEqual(expectedConfig);
     });
   });
 
   describe(<name-capitalize-united>Module.withOptions.name, () => {
     it('provides the <name-capitalize-united>', () => {
-      const <name-cammel> = create<name-capitalize-united>WithOptions();
+      const <name-camel> = create<name-capitalize-united>WithOptions();
 
-      expect(<name-cammel>).toBeInstanceOf(<name-capitalize-united>);
+      expect(<name-camel>).toBeInstanceOf(<name-capitalize-united>);
     });
 
     it('registers the specified options', () => {
       const options = create<name-capitalize-united>Options();
 
-      const <name-cammel> = create<name-capitalize-united>WithOptions({ options });
+      const <name-camel> = create<name-capitalize-united>WithOptions({ options });
 
-      const actualConfig = <name-cammel>.config;
+      const actualConfig = <name-camel>.config;
       const expectedConfig: <name-capitalize-united>Config = {
         ...options,
         // tslint:disable-next-line: no-any
@@ -147,21 +147,21 @@ describe(<name-capitalize-united>Module.name, () => {
     it('gets common options from the log driver config', () => {
       const options = create<name-capitalize-united>Options();
 
-      const <name-cammel> = create<name-capitalize-united>WithOptions({ options });
+      const <name-camel> = create<name-capitalize-united>WithOptions({ options });
 
-      const { levels } = <name-cammel>.config;
+      const { levels } = <name-camel>.config;
       expect(levels).toEqual([LumberjackLogLevel.Verbose]);
     });
 
     it('does register the specified log driver configuration when the lumberjack module is imported after the <name-capitalize-united> module', () => {
       const options = create<name-capitalize-united>Options();
 
-      const <name-cammel> = create<name-capitalize-united>WithOptions({
+      const <name-camel> = create<name-capitalize-united>WithOptions({
         options,
         isLumberjackModuleImportedFirst: false,
       });
 
-      const actualConfig = <name-cammel>.config;
+      const actualConfig = <name-camel>.config;
       const expectedConfig: <name-capitalize-united>Config = {
         ...options,
         // tslint:disable-next-line: no-any

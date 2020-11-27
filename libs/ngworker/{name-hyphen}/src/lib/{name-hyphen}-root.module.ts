@@ -2,16 +2,16 @@ import { Inject, NgModule, Optional, SkipSelf } from '@angular/core';
 
 import { LogDriverConfig, logDriverConfigToken, logDriverToken } from '@ngworker/lumberjack';
 
-import { <name-capitalize-united>Config, <name-cammel>ConfigToken } from './<name-hyphen>.config';
+import { <name-capitalize-united>Config, <name-camel>ConfigToken } from './<name-hyphen>.config';
 import { <name-capitalize-united> } from './<name-hyphen>';
 
-export function <name-cammel>Factory(
+export function <name-camel>Factory(
   logDriverConfig: LogDriverConfig,
-  <name-cammel>Config: <name-capitalize-united>Config
+  <name-camel>Config: <name-capitalize-united>Config
 ): <name-capitalize-united> {
   const config: <name-capitalize-united>Config = {
     ...logDriverConfig,
-    ...<name-cammel>Config,
+    ...<name-camel>Config,
   };
 
   return new <name-capitalize-united>(config);
@@ -20,10 +20,10 @@ export function <name-cammel>Factory(
 @NgModule({
   providers: [
     {
-      deps: [logDriverConfigToken, <name-cammel>ConfigToken],
+      deps: [logDriverConfigToken, <name-camel>ConfigToken],
       multi: true,
       provide: logDriverToken,
-      useFactory: <name-cammel>Factory,
+      useFactory: <name-camel>Factory,
     },
   ],
 })
