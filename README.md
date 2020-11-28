@@ -45,7 +45,7 @@ Search across the repository files and solve the TODO comments.
 
 TODO: Modify the description of this driver
 
-<name-capitalize> is a custom log driver for [<organization-hyphen>/lumberjack](https://github.com/<organization-hyphen>/lumberjack). It is used to send logs over SOME protocol.
+<name-capitalize> is a custom log driver for [ngworker/lumberjack](https://github.com/ngworker/lumberjack). It is used to send logs over SOME protocol.
 
 ## Features
 

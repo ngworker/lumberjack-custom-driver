@@ -29,6 +29,9 @@ const filesToIgnore = {
 };
 
 function replaceFileNames(dir, calculatedTokens) {
+  console.info(fgWhite, 'Replacing path driver names...');
+  console.info(fgWhite, 'Replacing content driver names...');
+
   _replaceFileNames(dir, calculatedTokens);
 
   console.info(fgWhite, 'Replacing path driver names... Completed');

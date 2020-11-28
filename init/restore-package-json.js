@@ -9,6 +9,7 @@ function restorePackageJson() {
     fs.rmSync('package.json');
     fs.rmdirSync('node_modules ', { recursive: true });
     fs.renameSync('~package.json', 'package.json');
+    fs.rmSync('package-lock.json');
 
     console.info(fgWhite, 'Restoring package.json... Completed');
   } catch (error) {

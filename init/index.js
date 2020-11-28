@@ -25,6 +25,7 @@ async function init() {
     const answers = await inquirer.prompt(questions);
     const driverName = answers['driver-name'];
     const organizationName = answers['organization-name'];
+    const packageManager = answers['package-manager'];
 
     console.info(fgYellow, '\nPlease be patient. This will take a couple of minutes ⏳\n');
 
@@ -36,9 +37,9 @@ async function init() {
 
     activateGithubActions();
 
-    installPackages();
+    installPackages(packageManager);
 
-    fixLintIssues();
+    fixLintIssues(packageManager);
 
     renameRootFolder(calculatedTokens.hyphenName);
 

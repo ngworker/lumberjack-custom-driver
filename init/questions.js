@@ -28,6 +28,12 @@ const questions = [
       return 'Please enter a valid driver name. Expected case is "hyphen-case"';
     },
   },
+  {
+    type: 'rawlist',
+    name: 'package-manager',
+    message: 'Which package manager do you want to use',
+    choices: ['yarn', 'npm'],
+  },
 ];
 
 module.exports = questions;

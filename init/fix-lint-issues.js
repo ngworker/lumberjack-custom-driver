@@ -4,8 +4,14 @@ const { execSync } = require('child_process');
 
 const { fgWhite } = require('./colors');
 
-function fixLintIssues() {
-  execSync('yarn lint --fix');
+function fixLintIssues(packageManager) {
+  console.info(fgWhite, 'Fixing linting issue...');
+
+  if (packageManager === 'npm') {
+    execSync('npm run lint --fix');
+  } else {
+    execSync('yarn lint --fix');
+  }
 
   console.info(fgWhite, 'Fixing linting issue... Completed');
 }
