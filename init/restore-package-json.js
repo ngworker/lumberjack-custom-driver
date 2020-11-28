@@ -6,10 +6,10 @@ const { fgWhite } = require('./colors');
 
 function restorePackageJson() {
   try {
-    fs.rmSync('package.json');
+    fs.unlinkSync('package.json');
     fs.rmdirSync('node_modules ', { recursive: true });
     fs.renameSync('~package.json', 'package.json');
-    fs.rmSync('package-lock.json');
+    fs.unlinkSync('package-lock.json');
 
     console.info(fgWhite, 'Restoring package.json... Completed');
   } catch (error) {

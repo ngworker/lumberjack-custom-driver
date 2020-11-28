@@ -104,7 +104,9 @@ function renameFilenamePlaceholder(filePath, calculatedTokens) {
     let newPath = filePath.replace(new RegExp(hyphenFileToken, 'g'), hyphenName);
     newPath = newPath.replace(new RegExp(organizationHyphenFileToken, 'g'), organizationName);
 
-    fs.rmdirSync(newPath, { recursive: true });
+    if (fs.existsSync(newPath)) {
+      fs.rmdirSync(newPath, { recursive: true });
+    }
     fs.renameSync(filePath, newPath);
     return newPath;
   }
