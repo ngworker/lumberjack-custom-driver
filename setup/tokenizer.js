@@ -1,3 +1,5 @@
+'use strict';
+
 const capitalizedToken = '<name-capitalize>';
 const hyphenToken = '<name-hyphen>';
 const hyphenFileToken = '{name-hyphen}';
