@@ -8,9 +8,10 @@ const lowercaseToken = '<name-lowercase>';
 const camelToken = '<name-camel>';
 const uppercaseUnderscoreToken = '<name-uppercase-underscore>';
 const organizationHyphenToken = '<organization-hyphen>';
+const packageManagerToken = '<package-manager>';
 const organizationHyphenFileToken = '{organization-hyphen}';
 
-function createTokens(driverName, organizationName) {
+function createTokens(driverName, organizationName, packageManager) {
   const splittedName = driverName.split('-');
   const capitalizedName = splittedName.map((name) => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
   const hyphenName = driverName;
@@ -30,6 +31,7 @@ function createTokens(driverName, organizationName) {
     camelName,
     uppercaseUnderscoreName,
     capitalizedUnitedName,
+    packageManager,
   };
 }
 
@@ -43,5 +45,6 @@ module.exports = {
   uppercaseUnderscoreToken,
   organizationHyphenToken,
   organizationHyphenFileToken,
+  packageManagerToken,
   createTokens,
 };

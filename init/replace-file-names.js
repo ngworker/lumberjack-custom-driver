@@ -14,6 +14,7 @@ const {
   uppercaseUnderscoreToken,
   organizationHyphenToken,
   organizationHyphenFileToken,
+  packageManagerToken,
 } = require('./tokenizer');
 
 const filesToIgnore = {
@@ -74,6 +75,7 @@ function replaceNameOccurrences(filePath, calculatedTokens) {
     camelName,
     uppercaseUnderscoreName,
     organizationName,
+    packageManager,
   } = calculatedTokens;
 
   let modifiedContent = fileContent;
@@ -84,6 +86,7 @@ function replaceNameOccurrences(filePath, calculatedTokens) {
   modifiedContent = modifiedContent.replace(new RegExp(camelToken, 'g'), camelName);
   modifiedContent = modifiedContent.replace(new RegExp(uppercaseUnderscoreToken, 'g'), uppercaseUnderscoreName);
   modifiedContent = modifiedContent.replace(new RegExp(organizationHyphenToken, 'g'), organizationName);
+  modifiedContent = modifiedContent.replace(new RegExp(packageManagerToken, 'g'), packageManager);
 
   fs.writeFileSync(filePath, modifiedContent);
 }

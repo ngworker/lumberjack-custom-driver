@@ -29,7 +29,7 @@ async function init() {
 
     console.info(fgYellow, '\nPlease be patient. This will take a couple of minutes ⏳\n');
 
-    const calculatedTokens = createTokens(driverName, organizationName);
+    const calculatedTokens = createTokens(driverName, organizationName, packageManager);
 
     replaceFileNames(process.cwd(), calculatedTokens);
 
