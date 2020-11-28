@@ -7,7 +7,7 @@ const { fgWhite } = require('./colors');
 function commitChanges() {
   console.info(fgWhite, 'Committing changes...');
 
-  execSync('git add . && git commit -m "chore: 🤖 init completed"');
+  execSync('git add . && git commit -m "chore: 🤖  driver init completed"');
 
   console.info(fgWhite, 'Committing changes... Completed');
 }
