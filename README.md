@@ -1,8 +1,8 @@
 # AUTHORS SECTION
 
-This section is meant to help `driver` authors with their first steps using this template.
+This section is meant to help log driver authors get started with this template.
 
-> TODO: Remove this section when the repository is completely setup.
+> TODO: Remove this section when the repository is completely set up.
 
 ## Terraform the repository
 
@@ -24,6 +24,8 @@ Search across the repository files and solve the TODO comments.
 
 > End of AUTHORS SECTION. Delete everything above
 
+# @<organization-hyphen>/<name-hyphen>
+
 <p align="center">
  <img width="40%" height="40%" src="./logo.svg">
 </p>
@@ -43,7 +45,7 @@ Search across the repository files and solve the TODO comments.
 
 TODO: Modify the description of this driver
 
-`<name-capitalize>` is a custom log driver for [<organization-hyphen>/lumberjack](https://github.com/<organization-hyphen>/lumberjack). It is used to send logs over SOME protocol.
+<name-capitalize> is a custom log driver for [<organization-hyphen>/lumberjack](https://github.com/<organization-hyphen>/lumberjack). It is used to send logs over SOME protocol.
 
 ## Features
 
@@ -77,35 +79,45 @@ TODO: Update the features of this driver
 
 `<name-capitalize-united>` has verified compatibility with the following Angular versions.
 
-| Angular version | Lumberjack 2.x support |
-| --------------- | ---------------------- |
-| 11.0.x          | ✅                     |
-| 10.2.x          | ✅                     |
-| 10.1.x          | ✅                     |
-| 10.0.x          | ✅                     |
-| 9.1.x           | ✅                     |
-| 9.0.x           | ✅                     |
+| Angular version | <name-hyphen> support |
+| --------------- | --------------------- |
+| 11.0.x          | ✅                    |
+| 10.2.x          | ✅                    |
+| 10.1.x          | ✅                    |
+| 10.0.x          | ✅                    |
+| 9.1.x           | ✅                    |
+| 9.0.x           | ✅                    |
 
 If the version you are using is not listed, please [raise an issue in our GitHub repository](https://github.com/<organization-hyphen>/<name-hyphen>/issues/new).
 
 ## Usage
 
-TODO: Verify that this configurations match your driver configurations.
+TODO: Verify that these configurations match your driver configurations.
 
 To start using <name-capitalize-united>, import it in your root or core Angular module along with Lumberjack.
 
-```typescript
-...,
-LumberjackModule.forRoot({
-  //options
-}),
-<name-capitalize-united>Module.forRoot({
-  //options
-}),
-...,
+```ts
+import { NgModule } from '@angular/core';
+import { LumberjackLogLevel, LumberjackModule } from '@ngworker/lumberjack';
+import { <name-capitalize-united> } from '@<organization-hyphen>/<name-hyphen>';
+
+@NgModule({
+  imports: [
+    LumberjackModule.forRoot({
+      levels: [LumberjackLogLevel.Verbose],
+    }),
+    <name-capitalize-united>.forRoot({
+      levels: [LumberjackLogLevel.Critical, LumberjackLogLevel.Error],
+      // Options
+    }),
+    // (...)
+  ],
+  // (...)
+})
+export class AppModule {}
 ```
 
-And now you can start using the lumberjack service and it will automatically use the `<name-capitalize-united>`.
+Now you can start using the `LumberjackService` or extend `LumberjackLogger` and they will automatically use the `<name-capitalize-united>`.
 
 ## Configuration
 
