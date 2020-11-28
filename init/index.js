@@ -6,9 +6,6 @@ const process = require('process');
 
 const questions = require('./questions');
 const { fgRed, fgGreen, fgYellow, fgWhite } = require('./colors');
-const replaceFileNames = require('./replace-file-names');
-const restorePackageJson = require('./restore-package-json');
-const activateGithubActions = require('./activate-github-actions');
 const fixLintIssues = require('./fix-lint-issues');
 const commitChanges = require('./commit-changes');
 const installPackages = require('./install-packages');
@@ -32,10 +29,13 @@ async function init() {
 
     const calculatedTokens = createTokens(driverName, organizationName, packageManager);
 
+    const replaceFileNames = require('./replace-file-names');
     replaceFileNames(process.cwd(), calculatedTokens);
 
+    const restorePackageJson = require('./restore-package-json');
     restorePackageJson();
 
+    const activateGithubActions = require('./activate-github-actions');
     activateGithubActions();
 
     installPackages(packageManager);

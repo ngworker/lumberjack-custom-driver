@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 
 const { fgWhite } = require('./colors');
 const {
@@ -104,9 +105,7 @@ function renameFilenamePlaceholder(filePath, calculatedTokens) {
     let newPath = filePath.replace(new RegExp(hyphenFileToken, 'g'), hyphenName);
     newPath = newPath.replace(new RegExp(organizationHyphenFileToken, 'g'), organizationName);
 
-    if (fs.existsSync(newPath)) {
-      fs.rmdirSync(newPath, { recursive: true });
-    }
+    rimraf.sync(newPath);
     fs.renameSync(filePath, newPath);
     return newPath;
   }
