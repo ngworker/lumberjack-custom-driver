@@ -1,3 +1,5 @@
+'use strict';
+
 const json = require('json');
 
 function editJsonInPlace(filePath, commands) {
