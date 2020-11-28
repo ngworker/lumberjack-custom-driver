@@ -12,7 +12,7 @@ function renameRootFolder(hyphenName) {
   splittedPath[splittedPath.length - 1] = hyphenName;
   const newPath = path.normalize(splittedPath.join('/'));
 
-  // fs.renameSync(process.cwd(), newPath);
+  fs.renameSync(process.cwd(), newPath);
 
   console.info(fgWhite, 'Renaming root folder... Completed\n');
 }
