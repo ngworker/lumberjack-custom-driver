@@ -16,7 +16,7 @@ const installPackages = require('./install-packages');
 const renameRootFolder = require('./rename-root-folder');
 const { createTokens } = require('./tokenizer');
 
-async function setup() {
+async function init() {
   if (fs.existsSync(path.join(process.cwd(), '~package.json'))) {
     console.info(fgWhite, 'Getting everything ready...');
 
@@ -53,4 +53,4 @@ async function setup() {
   }
 }
 
-setup();
+init();

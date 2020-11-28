@@ -21,7 +21,7 @@ const filesToIgnore = {
   '.DS_Store': true,
   '.gitignore': true,
   '.editorconfig': true,
-  setup: true,
+  init: true,
   'logo.svg': true,
   node_modules: true,
   'prettier.config.js': true,

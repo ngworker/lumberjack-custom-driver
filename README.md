@@ -6,12 +6,12 @@ This section is meant to help log driver authors get started with this template.
 
 ## Terraform the repository
 
-To customize the repo and enable some pre-configure tools run the `setup` script in the terminal at your root directory.
+To customize the repo and enable some pre-configure tools run the `init` script in the terminal at your root directory.
 
-The `setup` script will ask for the required information.
+The `init` script will ask for the required information.
 
 ```bash
-node setup
+node init
 ```
 
 ## Replace TODOS
