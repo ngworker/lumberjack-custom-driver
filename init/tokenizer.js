@@ -21,6 +21,7 @@ function createTokens(driverName, organizationName, packageManager) {
     .map((name, index) => (index != 0 ? name.charAt(0).toUpperCase() + name.slice(1) : name))
     .join('');
   const uppercaseUnderscoreName = splittedName.map((name) => name.toUpperCase()).join('_');
+  const packageManagerCommand = packageManager === 'npm' ? 'npm run' : packageManager;
 
   return {
     driverName,
@@ -31,7 +32,7 @@ function createTokens(driverName, organizationName, packageManager) {
     camelName,
     uppercaseUnderscoreName,
     capitalizedUnitedName,
-    packageManager,
+    packageManager: packageManagerCommand,
   };
 }
 

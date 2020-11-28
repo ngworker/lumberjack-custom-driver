@@ -8,7 +8,7 @@ function fixLintIssues(packageManager) {
   console.info(fgWhite, 'Fixing linting issue...');
 
   if (packageManager === 'npm') {
-    execSync('npm run lint --fix');
+    execSync('npm run lint -- --fix');
   } else {
     execSync('yarn lint --fix');
   }
