@@ -8,7 +8,9 @@ function activateGithubActions() {
   console.info(fgWhite, 'Github Actions activation...');
 
   if (fs.existsSync('github')) {
-    fs.rmdirSync('.github', { recursive: true });
+    if (fs.existsSync('.github')) {
+      fs.rmdirSync('.github', { recursive: true });
+    }
     fs.renameSync('github', '.github');
   }
 

@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const process = require('process');
-const inquirer = require('inquirer');
 
 const questions = require('./questions');
 const { fgRed, fgGreen, fgYellow, fgWhite } = require('./colors');
@@ -21,6 +20,8 @@ async function init() {
     console.info(fgWhite, 'Getting everything ready...');
 
     installPackages();
+
+    const inquirer = require('inquirer');
 
     const answers = await inquirer.prompt(questions);
     const driverName = answers['driver-name'];
