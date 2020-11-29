@@ -9,7 +9,6 @@ const { fgRed, fgGreen, fgYellow, fgWhite } = require('./colors');
 const fixLintIssues = require('./fix-lint-issues');
 const commitChanges = require('./commit-changes');
 const installPackages = require('./install-packages');
-const renameRootFolder = require('./rename-root-folder');
 const { createTokens } = require('./tokenizer');
 
 async function init() {
@@ -41,8 +40,6 @@ async function init() {
     installPackages(packageManager);
 
     fixLintIssues(packageManager);
-
-    renameRootFolder(calculatedTokens.hyphenName);
 
     commitChanges();
 
