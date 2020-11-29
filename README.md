@@ -10,8 +10,12 @@ To customize the repo and enable some pre-configure tools run the `init` script 
 
 The `init` script will ask for the required information.
 
+### Running the init script.
+
 ```bash
-node init
+npm run init
+# Or if you use yarn
+yarn init
 ```
 
 ## Replace TODOS

@@ -2,7 +2,8 @@
   "name": "@<organization-hyphen>/<name-hyphen>",
   "version": "0.0.0",
   "peerDependencies": {
-    "@angular/core": ">=9.0.7"
+    "@angular/core": ">=9.0.7",
+    "@ngworker/lumberjack": "^2.0.0 || >=2.0.0-rc.0 <2.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

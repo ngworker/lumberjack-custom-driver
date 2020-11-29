@@ -9,6 +9,7 @@ const camelToken = '<name-camel>';
 const uppercaseUnderscoreToken = '<name-uppercase-underscore>';
 const organizationHyphenToken = '<organization-hyphen>';
 const packageManagerToken = '<package-manager>';
+const packageManagerInstallToken = '<package-manager-install>';
 const organizationHyphenFileToken = '{organization-hyphen}';
 
 function createTokens(driverName, organizationName, packageManager) {
@@ -22,6 +23,7 @@ function createTokens(driverName, organizationName, packageManager) {
     .join('');
   const uppercaseUnderscoreName = splittedName.map((name) => name.toUpperCase()).join('_');
   const packageManagerCommand = packageManager === 'npm' ? 'npm run' : packageManager;
+  const packageManagerInstall = packageManager === 'npm' ? 'npm install' : packageManager;
 
   return {
     driverName,
@@ -33,6 +35,7 @@ function createTokens(driverName, organizationName, packageManager) {
     uppercaseUnderscoreName,
     capitalizedUnitedName,
     packageManager: packageManagerCommand,
+    packageManagerInstall,
   };
 }
 
@@ -47,5 +50,6 @@ module.exports = {
   organizationHyphenToken,
   organizationHyphenFileToken,
   packageManagerToken,
+  packageManagerInstallToken,
   createTokens,
 };

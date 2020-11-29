@@ -1,5 +1,5 @@
 {
-  "name": "<name-hyphen>",
+  "name": "@<organization-hyphen>/<name-hyphen>",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -20,7 +20,7 @@
     "test:internal:ci": "ng test internal-test-util --configuration=ci",
     "release": "cd libs/<organization-hyphen>/<name-hyphen> && standard-version --infile ../../../CHANGELOG.md",
     "publish": "cd dist/<organization-hyphen>/<name-hyphen> && npm publish",
-    "ci": "<package-manager> install && <package-manager> lint && <package-manager> build:lib && <package-manager> test:internal:ci && <package-manager> test:lib:ci && <package-manager> build && <package-manager> test:ci && <package-manager> e2e",
+    "ci": "<package-manager-install> && <package-manager> lint && <package-manager> build:lib && <package-manager> test:internal:ci && <package-manager> test:lib:ci && <package-manager> build && <package-manager> test:ci && <package-manager> e2e",
     "format": "npx prettier --config prettier.config.js --write \"**/*.*\" \"!dist/**\" \"!yarn.lock\" \"!package-lock.json\"",
     "delete-path-alias": "node tools/delete-path-alias.js"
   },
