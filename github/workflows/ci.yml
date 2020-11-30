@@ -19,7 +19,36 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-        angular-version: [10.1.x]
+        angular-version: [11.0.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Variable-Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache Yarn cache directory
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}-angular-${{ matrix.angular-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.node-version }}-angular-${{ matrix.angular-version }}-yarn-
+      - run: yarn install
+
+      - run: yarn lint
+
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+        angular-version: [11.0.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +57,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Angular version ${{ matrix.angular-version }}
-        uses: <organization-hyphen>/angular-versions-action@v2
+        uses: ngworker/angular-versions-action@v2
         with:
           angular_version: ${{ matrix.angular-version }}
 
@@ -48,7 +77,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: <name-hyphen>-package
-          path: dist/<organization-hyphen>/{name-hyphen}
+          path: dist/<organization-hyphen>/<name-hyphen>
           if-no-files-found: error
 
   lib:
@@ -66,7 +95,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Angular version ${{ matrix.angular-version }}
-        uses: <organization-hyphen>/angular-versions-action@v2
+        uses: ngworker/angular-versions-action@v2
         with:
           angular_version: ${{ matrix.angular-version }}
 
@@ -101,7 +130,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Angular version ${{ matrix.angular-version }}
-        uses: <organization-hyphen>/angular-versions-action@v2
+        uses: ngworker/angular-versions-action@v2
         with:
           angular_version: ${{ matrix.angular-version }}
 
@@ -143,7 +172,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Angular version ${{ matrix.angular-version }}
-        uses: <organization-hyphen>/angular-versions-action@v2
+        uses: ngworker/angular-versions-action@v2
         with:
           angular_version: ${{ matrix.angular-version }}
 
