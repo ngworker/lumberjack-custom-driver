@@ -15,7 +15,7 @@ The `init` script will ask for the required information.
 ```bash
 npm run init
 # Or if you use yarn
-yarn init
+yarn run init
 ```
 
 ## Replace TODOS
