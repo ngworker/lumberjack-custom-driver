@@ -1,8 +1,6 @@
 import { Type } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { resolveDependency } from './resolve-dependency';
-
 /**
  * Assert that an NgModule is guarded against direct import.
  */
@@ -13,8 +11,9 @@ export const expectNgModuleToBeGuarded = <TModule>(ngModuleType: Type<TModule>) 
     imports: [ngModuleType],
   });
 
+  // tslint:disable-next-line: no-floating-promises
   expect(() => {
-    ngModule = resolveDependency(ngModuleType);
+    ngModule = TestBed.inject(ngModuleType);
   })
     .withContext(`${ngModuleType.name} must guard against being imported directly`)
     .toThrow();

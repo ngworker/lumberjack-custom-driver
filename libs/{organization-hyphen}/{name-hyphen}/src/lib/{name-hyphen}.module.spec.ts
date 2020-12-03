@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { expectNgModuleToBeGuarded, resolveDependency } from '@internal/test-util';
+import { expectNgModuleToBeGuarded } from '@internal/test-util';
 import {
   LogDriver,
   LogDriverConfig,
@@ -48,7 +48,7 @@ const create<name-capitalize-united> = (
     ],
   });
 
-  const [<name-camel>] = (resolveDependency(logDriverToken) as unknown) as LogDriver[];
+  const [<name-camel>] = (TestBed.inject(logDriverToken) as unknown) as LogDriver[];
 
   return <name-camel>;
 };
@@ -70,7 +70,7 @@ const create<name-capitalize-united>WithOptions = (
     ],
   });
 
-  const [<name-camel>] = (resolveDependency(logDriverToken) as unknown) as LogDriver[];
+  const [<name-camel>] = (TestBed.inject(logDriverToken) as unknown) as LogDriver[];
 
   return <name-camel>;
 };
@@ -102,7 +102,7 @@ describe(<name-capitalize-united>Module.name, () => {
       const <name-camel> = create<name-capitalize-united>({ config: custom<name-capitalize-united>Config });
 
       const actualConfig = <name-camel>.config;
-      const logConfig = resolveDependency(lumberjackLogConfigToken);
+      const logConfig = TestBed.inject(lumberjackLogConfigToken);
       const defaultLogDriverConfig: LogDriverConfig = {
         levels: logConfig.levels,
       };

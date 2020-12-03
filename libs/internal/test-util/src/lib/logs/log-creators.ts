@@ -1,10 +1,10 @@
-import { LumberjackLogEntryLevel, LumberjackLogLevel, LumberjackTimeService } from '@<organization-hyphen>/lumberjack';
+import { TestBed } from '@angular/core/testing';
 
-import { resolveDependency } from '../resolve-dependency';
+import { LumberjackLogEntryLevel, LumberjackLogLevel, LumberjackTimeService } from '@<organization-hyphen>/lumberjack';
 
 const createLog = (level: LumberjackLogEntryLevel, message = '', context = 'Test') => ({
   context,
-  createdAt: resolveDependency(LumberjackTimeService).getUnixEpochTicks(),
+  createdAt: TestBed.inject(LumberjackTimeService).getUnixEpochTicks(),
   level,
   message,
 });
