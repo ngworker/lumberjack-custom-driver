@@ -1,12 +1,11 @@
 import { Inject, NgModule, Optional, SkipSelf } from '@angular/core';
-
-import { LogDriverConfig, logDriverConfigToken, logDriverToken } from '@ngworker/lumberjack';
+import { LumberjackLogDriverConfig, lumberjackLogDriverConfigToken, lumberjackLogDriverToken } from '@ngworker/lumberjack';
 
 import { <name-capitalize-united>Config, <name-camel>ConfigToken } from './<name-hyphen>.config';
 import { <name-capitalize-united> } from './<name-hyphen>';
 
 export function <name-camel>Factory(
-  logDriverConfig: LogDriverConfig,
+  logDriverConfig: LumberjackLogDriverConfig,
   <name-camel>Config: <name-capitalize-united>Config
 ): <name-capitalize-united> {
   const config: <name-capitalize-united>Config = {
@@ -20,9 +19,9 @@ export function <name-camel>Factory(
 @NgModule({
   providers: [
     {
-      deps: [logDriverConfigToken, <name-camel>ConfigToken],
+      deps: [lumberjackLogDriverConfigToken, <name-camel>ConfigToken],
       multi: true,
-      provide: logDriverToken,
+      provide: lumberjackLogDriverToken,
       useFactory: <name-camel>Factory,
     },
   ],
@@ -34,6 +33,7 @@ export class <name-capitalize-united>RootModule {
     @SkipSelf()
     @Inject(<name-capitalize-united>RootModule)
     maybeNgModuleFromParentInjector: <name-capitalize-united>RootModule = null as any
+    // tslint:enable: no-any no-null-keyword
   ) {
     if (maybeNgModuleFromParentInjector) {
       throw new Error(

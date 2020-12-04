@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-
-import { expectNgModuleToBeGuarded } from '@internal/test-util';
 import {
-  LogDriver,
-  LogDriverConfig,
-  logDriverToken,
-  lumberjackLogConfigToken,
-  LumberjackLogEntryLevel,
-  LumberjackLogLevel,
+  LumberjackConfigLevels,
+  lumberjackConfigToken,
+  LumberjackLevel,
+  LumberjackLogDriver,
+  LumberjackLogDriverConfig,
+  lumberjackLogDriverToken,
   LumberjackModule,
 } from '@ngworker/lumberjack';
+
+import { expectNgModuleToBeGuardedAgainstDirectImport } from '@internal/test-util';
 
 import { <name-capitalize-united>Config } from './<name-hyphen>.config';
 import { <name-capitalize-united>Options } from './<name-hyphen>.options';
@@ -23,7 +23,7 @@ function create<name-capitalize-united>Options(): <name-capitalize-united>Option
 }
 
 function create<name-capitalize-united>Config(
-  levels: ReadonlyArray<LumberjackLogEntryLevel> | [LumberjackLogLevel.Verbose]
+  levels: LumberjackConfigLevels
 ): <name-capitalize-united>Config {
   return {
     levels,
@@ -38,7 +38,7 @@ const create<name-capitalize-united> = (
   }: {
     config: <name-capitalize-united>Config;
     isLumberjackModuleImportedFirst?: boolean;
-  } = { config: create<name-capitalize-united>Config([LumberjackLogLevel.Verbose]) }
+  } = { config: create<name-capitalize-united>Config([LumberjackLevel.Verbose]) }
 ) => {
   TestBed.configureTestingModule({
     imports: [
@@ -48,7 +48,7 @@ const create<name-capitalize-united> = (
     ],
   });
 
-  const [<name-camel>] = (TestBed.inject(logDriverToken) as unknown) as LogDriver[];
+  const [<name-camel>] = (TestBed.inject(lumberjacklogDriverToken) as unknown) as LumberjackLogDriver[];
 
   return <name-camel>;
 };
@@ -70,14 +70,14 @@ const create<name-capitalize-united>WithOptions = (
     ],
   });
 
-  const [<name-camel>] = (TestBed.inject(logDriverToken) as unknown) as LogDriver[];
+  const [<name-camel>] = (TestBed.inject(logDriverToken) as unknown) as LumberjackLogDriver[];
 
   return <name-camel>;
 };
 
 describe(<name-capitalize-united>Module.name, () => {
   it(`cannot be imported without using the ${<name-capitalize-united>Module.forRoot.name} method`, () => {
-    expectNgModuleToBeGuarded(<name-capitalize-united>Module);
+    expectNgModuleToBeGuardedAgainstDirectImport(<name-capitalize-united>Module);
   });
 
   describe(<name-capitalize-united>Module.forRoot.name, () => {
@@ -88,7 +88,7 @@ describe(<name-capitalize-united>Module.name, () => {
     });
 
     it('registers the specified log driver configuration', () => {
-      const expectedConfig = create<name-capitalize-united>Config([LumberjackLogLevel.Error]);
+      const expectedConfig = create<name-capitalize-united>Config([LumberjackLevel.Error]);
 
       const <name-camel> = create<name-capitalize-united>({ config: expectedConfig });
 
@@ -97,21 +97,21 @@ describe(<name-capitalize-united>Module.name, () => {
     });
 
     it('registers a default level configuration if none is specified', () => {
-      const custom<name-capitalize-united>Config = create<name-capitalize-united>Config([LumberjackLogLevel.Verbose]);
+      const custom<name-capitalize-united>Config = create<name-capitalize-united>Config([LumberjackLevel.Verbose]);
 
       const <name-camel> = create<name-capitalize-united>({ config: custom<name-capitalize-united>Config });
 
       const actualConfig = <name-camel>.config;
-      const logConfig = TestBed.inject(lumberjackLogConfigToken);
-      const defaultLogDriverConfig: LogDriverConfig = {
-        levels: logConfig.levels,
+      const lumberjackConfig = TestBed.inject(lumberjackConfigToken);
+      const defaultLogDriverConfig: LumberjackLogDriverConfig = {
+        levels: lumberjackConfig.levels,
       };
       const expectedConfig: <name-capitalize-united>Config = { ...defaultLogDriverConfig, ...custom<name-capitalize-united>Config };
       expect(actualConfig).toEqual(expectedConfig);
     });
 
     it('does register the specified log driver configuration when the lumberjack module is imported after the <name-capitalize-united> module', () => {
-      const expectedConfig = create<name-capitalize-united>Config([LumberjackLogLevel.Debug]);
+      const expectedConfig = create<name-capitalize-united>Config([LumberjackLevel.Debug]);
 
       const <name-camel> = create<name-capitalize-united>({
         config: expectedConfig,
@@ -150,7 +150,7 @@ describe(<name-capitalize-united>Module.name, () => {
       const <name-camel> = create<name-capitalize-united>WithOptions({ options });
 
       const { levels } = <name-camel>.config;
-      expect(levels).toEqual([LumberjackLogLevel.Verbose]);
+      expect(levels).toEqual([LumberjackLevel.Verbose]);
     });
 
     it('does register the specified log driver configuration when the lumberjack module is imported after the <name-capitalize-united> module', () => {

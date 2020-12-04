@@ -102,16 +102,16 @@ To start using <name-capitalize-united>, import it in your root or core Angular 
 
 ```ts
 import { NgModule } from '@angular/core';
-import { LumberjackLogLevel, LumberjackModule } from '@ngworker/lumberjack';
+import { LumberjackLevel, LumberjackModule } from '@ngworker/lumberjack';
 import { <name-capitalize-united> } from '@<organization-hyphen>/<name-hyphen>';
 
 @NgModule({
   imports: [
     LumberjackModule.forRoot({
-      levels: [LumberjackLogLevel.Verbose],
+      levels: [LumberjackLevel.Verbose],
     }),
     <name-capitalize-united>.forRoot({
-      levels: [LumberjackLogLevel.Critical, LumberjackLogLevel.Error],
+      levels: [LumberjackLevel.Critical, LumberjackLevel.Error],
       // Options
     }),
     // (...)

@@ -1,22 +1,21 @@
 import { Inject, Injectable } from '@angular/core';
-
-import { LogDriver } from '@ngworker/lumberjack';
+import { LumberjackLogDriver } from '@ngworker/lumberjack';
 
 import { <name-capitalize-united>Config, <name-camel>ConfigToken } from './<name-hyphen>.config';
 
 @Injectable()
-export class <name-capitalize-united> implements LogDriver {
+export class <name-capitalize-united> implements LumberjackLogDriver {
   constructor(@Inject(<name-camel>ConfigToken) public config: <name-capitalize-united>Config) {}
 
-  logCritical(logEntry: string): void {}
+  logCritical(formattedLog: string): void {}
 
-  logDebug(logEntry: string): void {}
+  logDebug(formattedLog: string): void {}
 
-  logError(logEntry: string): void {}
+  logError(formattedLog: string): void {}
 
-  logInfo(logEntry: string): void {}
+  logInfo(formattedLog: string): void {}
 
-  logTrace(logEntry: string): void {}
+  logTrace(formattedLog: string): void {}
 
-  logWarning(logEntry: string): void {}
+  logWarning(formattedLog: string): void {}
 }

@@ -1,6 +1,6 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { LumberjackLevel, LumberjackModule } from '@ngworker/lumberjack';
 
-import { LumberjackLogLevel, LumberjackModule } from '@ngworker/lumberjack';
 import { <name-capitalize-united>Module } from '@<organization-hyphen>/<name-hyphen>';
 
 import { AppComponent } from './app.component';
@@ -9,7 +9,10 @@ describe('AppComponent', () => {
   let spectator: Spectator<AppComponent>;
   const createComponent = createComponentFactory({
     component: AppComponent,
-    imports: [LumberjackModule.forRoot(), <name-capitalize-united>Module.forRoot({ levels: [LumberjackLogLevel.Verbose], someNeededOption: 'option-value' })],
+    imports: [
+      LumberjackModule.forRoot(),
+      <name-capitalize-united>Module.forRoot({ levels: [LumberjackLevel.Verbose], someNeededOption: 'option-value' }),
+    ],
   });
 
   beforeEach(() => {
