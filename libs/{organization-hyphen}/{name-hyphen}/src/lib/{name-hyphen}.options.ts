@@ -1,4 +1,4 @@
-import { LogDriverConfig } from '@<organization-hyphen>/lumberjack';
+import { LogDriverConfig } from '@ngworker/lumberjack';
 
 import { <name-capitalize-united>Config } from './<name-hyphen>.config';
 

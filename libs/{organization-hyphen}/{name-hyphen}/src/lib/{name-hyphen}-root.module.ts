@@ -1,6 +1,6 @@
 import { Inject, NgModule, Optional, SkipSelf } from '@angular/core';
 
-import { LogDriverConfig, logDriverConfigToken, logDriverToken } from '@<organization-hyphen>/lumberjack';
+import { LogDriverConfig, logDriverConfigToken, logDriverToken } from '@ngworker/lumberjack';
 
 import { <name-capitalize-united>Config, <name-camel>ConfigToken } from './<name-hyphen>.config';
 import { <name-capitalize-united> } from './<name-hyphen>';

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LumberjackLogEntryLevel, LumberjackLogLevel, LumberjackTimeService } from '@<organization-hyphen>/lumberjack';
+import { LumberjackLogEntryLevel, LumberjackLogLevel, LumberjackTimeService } from '@ngworker/lumberjack';
 
 const createLog = (level: LumberjackLogEntryLevel, message = '', context = 'Test') => ({
   context,

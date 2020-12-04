@@ -1,6 +1,6 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
-import { LumberjackLogLevel, LumberjackModule } from '@<organization-hyphen>/lumberjack';
+import { LumberjackLogLevel, LumberjackModule } from '@ngworker/lumberjack';
 import { <name-capitalize-united>Module } from '@<organization-hyphen>/<name-hyphen>';
 
 import { AppComponent } from './app.component';

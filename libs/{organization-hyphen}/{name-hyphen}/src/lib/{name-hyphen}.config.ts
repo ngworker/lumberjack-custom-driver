@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-import { LogDriverConfig } from '@<organization-hyphen>/lumberjack';
+import { LogDriverConfig } from '@ngworker/lumberjack';
 
 export const <name-camel>ConfigToken: InjectionToken<<name-capitalize-united>Config> = new InjectionToken(
   '__<name-uppercase-underscore>_CONFIG__'
