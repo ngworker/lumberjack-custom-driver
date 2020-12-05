@@ -17,6 +17,7 @@ const {
   organizationHyphenFileToken,
   packageManagerToken,
   packageManagerInstallToken,
+  scriptEscapeArgumentsToken,
 } = require('./tokenizer');
 
 const filesToIgnore = {
@@ -79,6 +80,7 @@ function replaceNameOccurrences(filePath, calculatedTokens) {
     organizationName,
     packageManager,
     packageManagerInstall,
+    scriptEscapeArguments,
   } = calculatedTokens;
 
   let modifiedContent = fileContent;
@@ -91,6 +93,7 @@ function replaceNameOccurrences(filePath, calculatedTokens) {
   modifiedContent = modifiedContent.replace(new RegExp(organizationHyphenToken, 'g'), organizationName);
   modifiedContent = modifiedContent.replace(new RegExp(packageManagerToken, 'g'), packageManager);
   modifiedContent = modifiedContent.replace(new RegExp(packageManagerInstallToken, 'g'), packageManagerInstall);
+  modifiedContent = modifiedContent.replace(new RegExp(scriptEscapeArgumentsToken, 'g'), scriptEscapeArguments);
 
   fs.writeFileSync(filePath, modifiedContent);
 }

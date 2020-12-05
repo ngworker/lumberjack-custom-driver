@@ -11,6 +11,7 @@ const organizationHyphenToken = '<organization-hyphen>';
 const packageManagerToken = '<package-manager>';
 const packageManagerInstallToken = '<package-manager-install>';
 const organizationHyphenFileToken = '{organization-hyphen}';
+const scriptEscapeArgumentsToken = '<script-escape-arguments>';
 
 function createTokens(driverName, organizationName, packageManager) {
   const splittedName = driverName.split('-');
@@ -24,6 +25,7 @@ function createTokens(driverName, organizationName, packageManager) {
   const uppercaseUnderscoreName = splittedName.map((name) => name.toUpperCase()).join('_');
   const packageManagerCommand = packageManager === 'npm' ? 'npm run' : packageManager;
   const packageManagerInstall = packageManager === 'npm' ? 'npm install' : packageManager;
+  const scriptEscapeArguments = packageManager === 'npm' ? '-- ' : '';
 
   return {
     driverName,
@@ -36,6 +38,7 @@ function createTokens(driverName, organizationName, packageManager) {
     capitalizedUnitedName,
     packageManager: packageManagerCommand,
     packageManagerInstall,
+    scriptEscapeArguments,
   };
 }
 
@@ -51,5 +54,6 @@ module.exports = {
   organizationHyphenFileToken,
   packageManagerToken,
   packageManagerInstallToken,
+  scriptEscapeArgumentsToken,
   createTokens,
 };
