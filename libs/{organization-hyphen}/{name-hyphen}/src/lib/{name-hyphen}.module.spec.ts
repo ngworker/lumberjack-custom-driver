@@ -48,7 +48,7 @@ const create<name-capitalize-united> = (
     ],
   });
 
-  const [<name-camel>] = (TestBed.inject(lumberjacklogDriverToken) as unknown) as LumberjackLogDriver[];
+  const [<name-camel>] = (TestBed.inject(lumberjackLogDriverToken) as unknown) as LumberjackLogDriver[];
 
   return <name-camel>;
 };
@@ -70,7 +70,7 @@ const create<name-capitalize-united>WithOptions = (
     ],
   });
 
-  const [<name-camel>] = (TestBed.inject(logDriverToken) as unknown) as LumberjackLogDriver[];
+  const [<name-camel>] = (TestBed.inject(lumberjackLogDriverToken) as unknown) as LumberjackLogDriver[];
 
   return <name-camel>;
 };
