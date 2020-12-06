@@ -14,11 +14,11 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "module": "esnext",
+    "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "@internal/test-util": ["libs/internal/test-util/src/public_api.ts"],
-      "@ngworker/<name-hyphen>": ["libs/ngworker/<name-hyphen>/src/public-api.ts"]
+      "@internal/test-util": ["libs/internal/test-util/src/index.ts"],
+      "@<organization-hyphen>/<name-hyphen>": ["libs/<organization-hyphen>/<name-hyphen>/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

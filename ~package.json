@@ -1,0 +1,92 @@
+{
+  "name": "@<organization-hyphen>/<name-hyphen>",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve lumberjack-app",
+    "build": "ng build lumberjack-app --prod",
+    "test": "ng test lumberjack-app",
+    "test:ci": "<package-manager> test <script-escape-arguments>--configuration=ci",
+    "lint": "ng lint",
+    "e2e": "ng e2e lumberjack-app-e2e",
+    "contributors:add": "all-contributors add",
+    "hooks:pre-commit": "node hooks/pre-commit.js",
+    "commit": "git-cz",
+    "release:first": "<package-manager> release <script-escape-arguments>--first-release",
+    "build:lib": "ng build <organization-hyphen>-<name-hyphen> --prod && npx copy README.md ./dist/<organization-hyphen>/<name-hyphen>",
+    "test:lib": "ng test <organization-hyphen>-<name-hyphen>",
+    "test:lib:ci": "<package-manager> test:lib <script-escape-arguments>--configuration=ci",
+    "test:internal": "ng test internal-test-util",
+    "test:internal:ci": "ng test internal-test-util --configuration=ci",
+    "release": "cd libs/<organization-hyphen>/<name-hyphen> && standard-version --infile ../../../CHANGELOG.md",
+    "publish": "cd dist/<organization-hyphen>/<name-hyphen> && npm publish",
+    "ci": "<package-manager-install> && <package-manager> lint && <package-manager> build:lib && <package-manager> test:internal:ci && <package-manager> test:lib:ci && <package-manager> build && <package-manager> test:ci && <package-manager> e2e",
+    "format": "npx prettier --config prettier.config.js --write \"**/*.*\" \"!dist/**\" \"!yarn.lock\" \"!package-lock.json\"",
+    "delete-path-alias": "node tools/delete-path-alias.js"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~11.0.3",
+    "@angular/common": "~11.0.3",
+    "@angular/compiler": "~11.0.3",
+    "@angular/core": "~11.0.3",
+    "@angular/forms": "~11.0.3",
+    "@angular/platform-browser": "~11.0.3",
+    "@angular/platform-browser-dynamic": "~11.0.3",
+    "@angular/router": "~11.0.3",
+    "@ngworker/lumberjack": "^2.0.0 || >=2.0.0-beta.0",
+    "rxjs": "~6.6.3",
+    "tslib": "^2.0.3",
+    "zone.js": "~0.10.3"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.1100.3",
+    "@angular-devkit/build-ng-packagr": "~0.1002.0",
+    "@angular/cli": "~11.0.3",
+    "@angular/compiler-cli": "~11.0.3",
+    "@commitlint/cli": "8.1.0",
+    "@commitlint/config-angular": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@ngneat/spectator": "^6.0.0",
+    "@types/jasmine": "~3.6.2",
+    "@types/node": "^12.12.62",
+    "all-contributors-cli": "^6.8.1",
+    "codelyzer": "^6.0.0",
+    "copy": "~0.3.2",
+    "git-cz": "^3.3.0",
+    "husky": "^3.1.0",
+    "jasmine-core": "~3.6.0",
+    "jasmine-spec-reporter": "~5.0.2",
+    "json": "^10.0.0",
+    "karma": "~5.1.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.0.3",
+    "karma-jasmine": "~4.0.1",
+    "karma-jasmine-html-reporter": "^1.5.4",
+    "lint-staged": "^9.5.0",
+    "ng-packagr": "^11.0.3",
+    "prettier": "^2.0.5",
+    "protractor": "~7.0.0",
+    "standard-version": "^6.0.1",
+    "ts-node": "~8.3.0",
+    "tslint": "~6.1.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.3.0",
+    "typescript": "~4.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,ts,html,component.html}": ["prettier --write", "git add"]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "<package-manager> hooks:pre-commit && lint-staged && <package-manager> lint",
+      "pre-push": "<package-manager> test:lib:ci"
+    }
+  }
+}

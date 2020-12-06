@@ -38,7 +38,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -46,8 +45,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 }
               ]
             }
@@ -123,30 +122,30 @@
         }
       }
     },
-    "ngworker-<name-hyphen>": {
+    "<organization-hyphen>-<name-hyphen>": {
       "projectType": "library",
-      "root": "libs/ngworker/<name-hyphen>",
-      "sourceRoot": "libs/ngworker/<name-hyphen>/src",
+      "root": "libs/<organization-hyphen>/<name-hyphen>",
+      "sourceRoot": "libs/<organization-hyphen>/<name-hyphen>/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/ngworker/<name-hyphen>/tsconfig.lib.json",
-            "project": "libs/ngworker/<name-hyphen>/ng-package.json"
+            "tsConfig": "libs/<organization-hyphen>/<name-hyphen>/tsconfig.lib.json",
+            "project": "libs/<organization-hyphen>/<name-hyphen>/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/ngworker/<name-hyphen>/tsconfig.lib.prod.json"
+              "tsConfig": "libs/<organization-hyphen>/<name-hyphen>/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/ngworker/<name-hyphen>/src/test.ts",
-            "tsConfig": "libs/ngworker/<name-hyphen>/tsconfig.spec.json",
-            "karmaConfig": "libs/ngworker/<name-hyphen>/karma.conf.js"
+            "main": "libs/<organization-hyphen>/<name-hyphen>/src/test.ts",
+            "tsConfig": "libs/<organization-hyphen>/<name-hyphen>/tsconfig.spec.json",
+            "karmaConfig": "libs/<organization-hyphen>/<name-hyphen>/karma.conf.js"
           },
           "configurations": {
             "ci": {
@@ -160,10 +159,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/ngworker/<name-hyphen>/tsconfig.lib.json",
-              "libs/ngworker/<name-hyphen>/tsconfig.spec.json"
+              "libs/<organization-hyphen>/<name-hyphen>/tsconfig.lib.json",
+              "libs/<organization-hyphen>/<name-hyphen>/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ngworker/<name-hyphen>/**"]
+            "exclude": ["**/node_modules/**", "!libs/<organization-hyphen>/<name-hyphen>/**"]
           }
         }
       }

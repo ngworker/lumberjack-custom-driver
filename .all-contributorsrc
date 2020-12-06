@@ -1,6 +1,6 @@
 {
   "projectName": "<name-hyphen>",
-  "projectOwner": "@ngworker",
+  "projectOwner": "@<organization-hyphen>",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
