@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { <name-capitalize-united>Config, <name-camel>ConfigToken } from './<name-hyphen>.config';
+import { <name-camel>ConfigToken } from './<name-hyphen>.config.token';
+import { <name-capitalize-united>Config } from './<name-hyphen>.config';
 import { <name-capitalize-united>Options } from './<name-hyphen>.options';
 import { <name-capitalize-united>RootModule } from './<name-hyphen>-root.module';
 
