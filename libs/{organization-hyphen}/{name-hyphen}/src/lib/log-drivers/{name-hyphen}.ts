@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { LumberjackLog, LumberjackLogDriver, LumberjackLogDriverLog, LumberjackLogPayload } from '@ngworker/lumberjack';
 
-import { <name-camel>ConfigToken } from './configuration/<name-hyphen>.config.token';
-import { <name-capitalize-united>Config } from './configuration/<name-hyphen>.config';
+import { <name-camel>ConfigToken } from '../configuration/<name-hyphen>.config.token';
+import { <name-capitalize-united>Config } from '../configuration/<name-hyphen>.config';
 
 @Injectable()
 export class <name-capitalize-united><TPayload extends LumberjackLogPayload | void = void> implements LumberjackLogDriver<TPayload> {

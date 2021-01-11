@@ -10,7 +10,7 @@ import {
   LumberjackModule,
 } from '@ngworker/lumberjack';
 
-import { <name-capitalize-united> } from './log-drivers/<name-hyphen>';
+import { <name-capitalize-united> } from '../log-drivers/<name-hyphen>';
 
 import { <name-capitalize-united>Config } from './<name-hyphen>.config';
 import { <name-capitalize-united>Options } from './<name-hyphen>.options';
