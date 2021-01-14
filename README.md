@@ -76,7 +76,6 @@ TODO: Update the features of this driver
 | ----------- | -------------------------------------------------- |
 | Angular CLI | `ng add @<organization-hyphen>/<name-hyphen>`      |
 | NPM CLI     | `npm install @<organization-hyphen>/<name-hyphen>` |
-| Nx CLI      | `nx add @<organization-hyphen>/<name-hyphen>`      |
 | Yarn CLI    | `yarn add @<organization-hyphen>/<name-hyphen>`    |
 
 ## Compatibility
