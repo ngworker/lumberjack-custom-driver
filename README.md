@@ -79,16 +79,13 @@ TODO: Update the features of this driver
 
 ## Compatibility
 
-`<name-capitalize-united>` has verified compatibility with the following Angular versions.
+`<name-capitalize-united>` has verified compatibility with the following packages versions.
 
-| Angular version | <name-hyphen> support |
-| --------------- | --------------------- |
-| 11.0.x          | ✅                    |
-| 10.2.x          | ✅                    |
-| 10.1.x          | ✅                    |
-| 10.0.x          | ✅                    |
-| 9.1.x           | ✅                    |
-| 9.0.x           | ✅                    |
+| <name-capitalize-united> | Lumberjack   | Another Package |
+| ------------------------ | ------------ | --------------- |
+| 2.0.x                    | ^2.0.0       | ^8.0.0          |
+| 1.2.x                    | ^2.0.0.beta4 | ^7.4.1          |
+| 1.1.x                    | ^2.0.0.beta3 | ^7.0.0          |
 
 If the version you are using is not listed, please [raise an issue in our GitHub repository](https://github.com/<organization-hyphen>/<name-hyphen>/issues/new).
 
