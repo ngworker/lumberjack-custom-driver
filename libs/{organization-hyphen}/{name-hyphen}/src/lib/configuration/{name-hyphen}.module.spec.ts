@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { expectNgModuleToBeGuardedAgainstDirectImport, resolveDependency } from '@internal/test-util';
 import {
   LumberjackConfigLevels,
   lumberjackConfigToken,
@@ -9,12 +10,11 @@ import {
   LumberjackModule,
 } from '@ngworker/lumberjack';
 
-import { expectNgModuleToBeGuardedAgainstDirectImport } from '@internal/test-util';
+import { <name-capitalize-united> } from '../log-drivers/<name-hyphen>';
 
 import { <name-capitalize-united>Config } from './<name-hyphen>.config';
 import { <name-capitalize-united>Options } from './<name-hyphen>.options';
 import { <name-capitalize-united>Module } from './<name-hyphen>.module';
-import { <name-capitalize-united> } from './<name-hyphen>';
 
 function create<name-capitalize-united>Options(): <name-capitalize-united>Options {
   return {
@@ -48,7 +48,7 @@ const create<name-capitalize-united> = (
     ],
   });
 
-  const [<name-camel>] = (TestBed.inject(lumberjackLogDriverToken) as unknown) as LumberjackLogDriver[];
+  const [<name-camel>] = (resolveDependency(lumberjackLogDriverToken) as unknown) as LumberjackLogDriver[];
 
   return <name-camel>;
 };
@@ -70,7 +70,7 @@ const create<name-capitalize-united>WithOptions = (
     ],
   });
 
-  const [<name-camel>] = (TestBed.inject(lumberjackLogDriverToken) as unknown) as LumberjackLogDriver[];
+  const [<name-camel>] = (resolveDependency(lumberjackLogDriverToken) as unknown) as LumberjackLogDriver[];
 
   return <name-camel>;
 };
@@ -102,9 +102,9 @@ describe(<name-capitalize-united>Module.name, () => {
       const <name-camel> = create<name-capitalize-united>({ config: custom<name-capitalize-united>Config });
 
       const actualConfig = <name-camel>.config;
-      const lumberjackConfig = TestBed.inject(lumberjackConfigToken);
+      const logConfig = resolveDependency(lumberjackConfigToken);
       const defaultLogDriverConfig: LumberjackLogDriverConfig = {
-        levels: lumberjackConfig.levels,
+        levels: logConfig.levels,
       };
       const expectedConfig: <name-capitalize-united>Config = { ...defaultLogDriverConfig, ...custom<name-capitalize-united>Config };
       expect(actualConfig).toEqual(expectedConfig);

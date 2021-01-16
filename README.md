@@ -44,7 +44,6 @@ Search across the repository files and solve the TODO comments.
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 [![<organization-hyphen>](https://img.shields.io/badge/<organization-hyphen>-%40-red)](https://github.com/<organization-hyphen>/)
-[![spectator](https://img.shields.io/badge/tested%20with-spectator-2196F3.svg?style=flat-square)]()
 [![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=flat&logo=github)](https://wallabyjs.com/oss/)
 
 TODO: Modify the description of this driver
@@ -76,21 +75,17 @@ TODO: Update the features of this driver
 | ----------- | -------------------------------------------------- |
 | Angular CLI | `ng add @<organization-hyphen>/<name-hyphen>`      |
 | NPM CLI     | `npm install @<organization-hyphen>/<name-hyphen>` |
-| Nx CLI      | `nx add @<organization-hyphen>/<name-hyphen>`      |
 | Yarn CLI    | `yarn add @<organization-hyphen>/<name-hyphen>`    |
 
 ## Compatibility
 
-`<name-capitalize-united>` has verified compatibility with the following Angular versions.
+`<name-capitalize-united>` has verified compatibility with the following packages versions.
 
-| Angular version | <name-hyphen> support |
-| --------------- | --------------------- |
-| 11.0.x          | ✅                    |
-| 10.2.x          | ✅                    |
-| 10.1.x          | ✅                    |
-| 10.0.x          | ✅                    |
-| 9.1.x           | ✅                    |
-| 9.0.x           | ✅                    |
+| <name-capitalize-united> | Lumberjack     | Another Package |
+| ------------------------ | -------------- | --------------- |
+| 2.0.x                    | ^2.0.0         | ^8.0.0          |
+| 1.2.x                    | >=2.0.0-beta.4 | ^7.4.1          |
+| 1.1.x                    | >=2.0.0-beta.3 | ^7.0.0          |
 
 If the version you are using is not listed, please [raise an issue in our GitHub repository](https://github.com/<organization-hyphen>/<name-hyphen>/issues/new).
 

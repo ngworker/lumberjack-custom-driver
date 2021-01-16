@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LumberjackLevel, LumberjackModule } from '@ngworker/lumberjack';
 
 import { <name-capitalize-united>Module } from '@<organization-hyphen>/<name-hyphen>';
@@ -6,29 +6,38 @@ import { <name-capitalize-united>Module } from '@<organization-hyphen>/<name-hyp
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  let spectator: Spectator<AppComponent>;
-  const createComponent = createComponentFactory({
-    component: AppComponent,
-    imports: [
-      LumberjackModule.forRoot(),
-      <name-capitalize-united>Module.forRoot({ levels: [LumberjackLevel.Verbose], someNeededOption: 'option-value' }),
-    ],
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [
+        AppComponent
+      ],
+      imports:[
+        LumberjackModule.forRoot(),
+        <name-capitalize-united>Module.forRoot({ levels: [LumberjackLevel.Verbose], someNeededOption: 'option-value' }),
+      ]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
   });
 
-  beforeEach(() => {
-    spectator = createComponent();
-  });
 
   it('should create the app', () => {
-    expect(spectator.component).toBeTruthy();
+    expect(app).toBeTruthy();
   });
 
   it(`should have as title 'lumberjack'`, () => {
-    expect(spectator.component.title).toEqual('lumberjack');
+    expect(app.title).toEqual('lumberjack');
   });
 
   it('should render title', () => {
-    const query = spectator.query('.content span');
+    fixture.detectChanges();
+    const query = fixture.nativeElement.querySelector('.content span');
     expect(query && query.textContent).toContain('lumberjack app is running!');
   });
 });
+
+

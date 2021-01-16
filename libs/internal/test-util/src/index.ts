@@ -2,6 +2,19 @@
  * Public API Surface of @internal/test-util
  */
 
-export * from './lib/expect-ng-module-to-be-guarded-against-direct-import';
-export * from './lib/logs/log-creators';
-export * from './lib/repeat-side-effect';
+// Angular
+export * from './lib/angular/expect-ng-module-to-be-guarded-against-direct-import';
+export * from './lib/angular/resolve-dependency';
+
+// Functions
+export * from './lib/functions/repeat-side-effect';
+
+// Logs
+export * from './lib/logs/driver-log-creators';
+
+// Type checking
+export * from './lib/type-checking/is-class';
+export * from './lib/type-checking/is-object';
+
+// Time
+export * from './lib/time/fake-time.service';

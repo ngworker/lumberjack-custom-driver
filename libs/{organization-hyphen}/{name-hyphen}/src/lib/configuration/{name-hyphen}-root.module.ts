@@ -1,8 +1,10 @@
 import { Inject, NgModule, Optional, SkipSelf } from '@angular/core';
 import { LumberjackLogDriverConfig, lumberjackLogDriverConfigToken, lumberjackLogDriverToken } from '@ngworker/lumberjack';
 
-import { <name-capitalize-united>Config, <name-camel>ConfigToken } from './<name-hyphen>.config';
-import { <name-capitalize-united> } from './<name-hyphen>';
+import { <name-capitalize-united> } from '../log-drivers/<name-hyphen>';
+
+import { <name-camel>ConfigToken } from './<name-hyphen>.config.token';
+import { <name-capitalize-united>Config } from './<name-hyphen>.config';
 
 export function <name-camel>Factory(
   logDriverConfig: LumberjackLogDriverConfig,

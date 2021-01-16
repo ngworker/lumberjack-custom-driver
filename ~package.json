@@ -34,7 +34,7 @@
     "@angular/platform-browser": "~11.0.3",
     "@angular/platform-browser-dynamic": "~11.0.3",
     "@angular/router": "~11.0.3",
-    "@ngworker/lumberjack": "^2.0.0 || >=2.0.0-beta.2",
+    "@ngworker/lumberjack": "^2.0.0 || >=2.0.0-beta.3",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",
     "zone.js": "~0.10.3"
@@ -47,7 +47,6 @@
     "@commitlint/cli": "8.1.0",
     "@commitlint/config-angular": "^8.3.4",
     "@commitlint/config-conventional": "^8.3.4",
-    "@ngneat/spectator": "^6.0.0",
     "@types/jasmine": "~3.6.2",
     "@types/node": "^12.12.62",
     "all-contributors-cli": "^6.8.1",
