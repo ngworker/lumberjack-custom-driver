@@ -81,9 +81,9 @@ TODO: Update the features of this driver
 
 `<name-capitalize-united>` has verified compatibility with the following packages versions.
 
-| <name-capitalize-united> | Lumberjack   | Another Package |
-| ------------------------ | ------------ | --------------- |
-| 2.0.x                    | ^2.0.0       | ^8.0.0          |
+| <name-capitalize-united> | Lumberjack     | Another Package |
+| ------------------------ | -------------- | --------------- |
+| 2.0.x                    | ^2.0.0         | ^8.0.0          |
 | 1.2.x                    | >=2.0.0-beta.4 | ^7.4.1          |
 | 1.1.x                    | >=2.0.0-beta.3 | ^7.0.0          |
 
