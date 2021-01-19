@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { LumberjackLog, LumberjackLogDriver, LumberjackLogDriverLog, LumberjackLogPayload } from '@ngworker/lumberjack';
+import { LumberjackLogDriver, LumberjackLogDriverLog, LumberjackLogPayload } from '@ngworker/lumberjack';
 
 import { <name-camel>ConfigToken } from '../configuration/<name-hyphen>.config.token';
 import { <name-capitalize-united>InternalConfig } from '../configuration/<name-hyphen>-internal.config';
