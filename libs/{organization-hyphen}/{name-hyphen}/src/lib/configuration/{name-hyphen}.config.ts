@@ -1,6 +1,4 @@
-import { LumberjackLogDriverConfig } from '@ngworker/lumberjack';
+import { <name-capitalize-united>InternalConfig } from './<name-hyphen>-internal.config';
 
-// tslint:disable-next-line: no-empty-interface
-export interface <name-capitalize-united>Config extends LumberjackLogDriverConfig {
-  someNeededOption: string
-}
+export type <name-capitalize-united>Config = Omit<<name-capitalize-united>InternalConfig, 'identifier'> &
+  Partial<Pick<<name-capitalize-united>InternalConfig, 'identifier'>>;

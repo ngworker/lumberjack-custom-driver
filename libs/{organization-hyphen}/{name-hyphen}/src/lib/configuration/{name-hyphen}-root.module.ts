@@ -4,14 +4,14 @@ import { LumberjackLogDriverConfig, lumberjackLogDriverConfigToken, lumberjackLo
 import { <name-capitalize-united> } from '../log-drivers/<name-hyphen>';
 
 import { <name-camel>ConfigToken } from './<name-hyphen>.config.token';
-import { <name-capitalize-united>Config } from './<name-hyphen>.config';
+import { <name-capitalize-united>InternalConfig } from './<name-hyphen>-internal.config';
 
 export function <name-camel>Factory(
   logDriverConfig: LumberjackLogDriverConfig,
-  <name-camel>Config: <name-capitalize-united>Config
+  <name-camel>Config: <name-capitalize-united>InternalConfig
 ): <name-capitalize-united> {
-  const config: <name-capitalize-united>Config = {
-    ...logDriverConfig,
+  const config: <name-capitalize-united>InternalConfig = {
+    ...{ ...logDriverConfig, identifier: <name-capitalize-united>.driverIdentifier },
     ...<name-camel>Config,
   };
 
