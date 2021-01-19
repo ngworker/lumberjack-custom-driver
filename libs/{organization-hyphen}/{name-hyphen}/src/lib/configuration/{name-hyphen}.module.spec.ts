@@ -114,7 +114,7 @@ describe(<name-capitalize-united>Module.name, () => {
       expect(actualConfig).toEqual(expectedConfig as <name-capitalize-united>InternalConfig);
     });
 
-    it('register the specified log driver configuration when the lumberjack module is imported after the <name-capitalize-united> module', () => {
+    it('registers the specified log driver configuration when the Lumberjack module is imported after the <name-capitalize-united> module', () => {
       const expectedConfig = create<name-capitalize-united>Config([LumberjackLevel.Debug], 'TestDriverIdentifier');
 
       const <name-camel> = create<name-capitalize-united>({
