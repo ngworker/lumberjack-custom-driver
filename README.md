@@ -84,7 +84,7 @@ TODO: Update the features of this driver
 | <name-capitalize-united> | Lumberjack     | Another Package |
 | ------------------------ | -------------- | --------------- |
 | 2.0.x                    | ^2.0.0         | ^8.0.0          |
-| 1.2.x                    | >=2.0.0-beta.4 | ^7.4.1          |
+| 1.2.x                    | >=2.0.0-rc.0   | ^7.4.1          |
 | 1.1.x                    | >=2.0.0-beta.3 | ^7.0.0          |
 
 If the version you are using is not listed, please [raise an issue in our GitHub repository](https://github.com/<organization-hyphen>/<name-hyphen>/issues/new).

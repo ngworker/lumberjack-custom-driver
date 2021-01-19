@@ -1,34 +1,42 @@
 import { TestBed } from '@angular/core/testing';
-import { expectNgModuleToBeGuardedAgainstDirectImport, resolveDependency } from '@internal/test-util';
 import {
   LumberjackConfigLevels,
-  lumberjackConfigToken,
   LumberjackLevel,
   LumberjackLogDriver,
-  LumberjackLogDriverConfig,
   lumberjackLogDriverToken,
   LumberjackModule,
 } from '@ngworker/lumberjack';
 
+import { expectNgModuleToBeGuardedAgainstDirectImport, resolveDependency } from '@internal/test-util';
+
 import { <name-capitalize-united> } from '../log-drivers/<name-hyphen>';
 
+import { <name-capitalize-united>InternalConfig } from './<name-hyphen>-internal.config';
 import { <name-capitalize-united>Config } from './<name-hyphen>.config';
-import { <name-capitalize-united>Options } from './<name-hyphen>.options';
 import { <name-capitalize-united>Module } from './<name-hyphen>.module';
+import { <name-capitalize-united>Options } from './<name-hyphen>.options';
 
-function create<name-capitalize-united>Options(): <name-capitalize-united>Options {
+function create<name-capitalize-united>Options(
+  extraOptions: { levels?: LumberjackConfigLevels; identifier?: string } = {}
+): <name-capitalize-united>Options {
   return {
     someNeededOption: 'some-options',
+    ...extraOptions,
   };
 }
 
-function create<name-capitalize-united>Config(
-  levels: LumberjackConfigLevels
-): <name-capitalize-united>Config {
-  return {
+function create<name-capitalize-united>Config(levels: LumberjackConfigLevels, identifier?: string): <name-capitalize-united>Config {
+  const config = {
     levels,
     someNeededOption: 'some-options',
+    identifier,
   };
+
+  if (!identifier) {
+    delete config.identifier;
+  }
+
+  return config;
 }
 
 const create<name-capitalize-united> = (
@@ -38,7 +46,9 @@ const create<name-capitalize-united> = (
   }: {
     config: <name-capitalize-united>Config;
     isLumberjackModuleImportedFirst?: boolean;
-  } = { config: create<name-capitalize-united>Config([LumberjackLevel.Verbose]) }
+  } = {
+    config: create<name-capitalize-united>Config([LumberjackLevel.Verbose], <name-capitalize-united>.driverIdentifier),
+  }
 ) => {
   TestBed.configureTestingModule({
     imports: [
@@ -52,7 +62,6 @@ const create<name-capitalize-united> = (
 
   return <name-camel>;
 };
-
 const create<name-capitalize-united>WithOptions = (
   {
     isLumberjackModuleImportedFirst = true,
@@ -87,31 +96,26 @@ describe(<name-capitalize-united>Module.name, () => {
       expect(<name-camel>).toBeInstanceOf(<name-capitalize-united>);
     });
 
-    it('registers the specified log driver configuration', () => {
-      const expectedConfig = create<name-capitalize-united>Config([LumberjackLevel.Error]);
+    it('registers the specified log driver configuration given the specified identifier', () => {
+      const expectedConfig = create<name-capitalize-united>Config([LumberjackLevel.Error], 'TestDriverIdentifier');
 
       const <name-camel> = create<name-capitalize-united>({ config: expectedConfig });
 
       const actualConfig = <name-camel>.config;
-      expect(actualConfig).toEqual(expectedConfig);
+      expect(actualConfig).toEqual(expectedConfig as <name-capitalize-united>InternalConfig);
     });
 
-    it('registers a default level configuration if none is specified', () => {
-      const custom<name-capitalize-united>Config = create<name-capitalize-united>Config([LumberjackLevel.Verbose]);
-
-      const <name-camel> = create<name-capitalize-united>({ config: custom<name-capitalize-united>Config });
+    it('registers the specified log driver configuration given no identifier', () => {
+      const config = create<name-capitalize-united>Config([LumberjackLevel.Error]);
+      const expectedConfig = { ...config, identifier: <name-capitalize-united>.driverIdentifier };
+      const <name-camel> = create<name-capitalize-united>({ config });
 
       const actualConfig = <name-camel>.config;
-      const logConfig = resolveDependency(lumberjackConfigToken);
-      const defaultLogDriverConfig: LumberjackLogDriverConfig = {
-        levels: logConfig.levels,
-      };
-      const expectedConfig: <name-capitalize-united>Config = { ...defaultLogDriverConfig, ...custom<name-capitalize-united>Config };
-      expect(actualConfig).toEqual(expectedConfig);
+      expect(actualConfig).toEqual(expectedConfig as <name-capitalize-united>InternalConfig);
     });
 
-    it('does register the specified log driver configuration when the lumberjack module is imported after the <name-capitalize-united> module', () => {
-      const expectedConfig = create<name-capitalize-united>Config([LumberjackLevel.Debug]);
+    it('registers the specified log driver configuration when the Lumberjack module is imported after the <name-capitalize-united> module', () => {
+      const expectedConfig = create<name-capitalize-united>Config([LumberjackLevel.Debug], 'TestDriverIdentifier');
 
       const <name-camel> = create<name-capitalize-united>({
         config: expectedConfig,
@@ -119,7 +123,7 @@ describe(<name-capitalize-united>Module.name, () => {
       });
 
       const actualConfig = <name-camel>.config;
-      expect(actualConfig).toEqual(expectedConfig);
+      expect(actualConfig).toEqual(expectedConfig as <name-capitalize-united>InternalConfig);
     });
   });
 
@@ -136,21 +140,57 @@ describe(<name-capitalize-united>Module.name, () => {
       const <name-camel> = create<name-capitalize-united>WithOptions({ options });
 
       const actualConfig = <name-camel>.config;
-      const expectedConfig: <name-capitalize-united>Config = {
+      const expectedConfig: <name-capitalize-united>InternalConfig = {
         ...options,
         // tslint:disable-next-line: no-any
         levels: jasmine.any(Array) as any,
+        // tslint:disable-next-line: no-any
+        identifier: jasmine.any(String) as any,
       };
       expect(actualConfig).toEqual(expectedConfig);
     });
 
-    it('gets common options from the log driver config', () => {
+    it('registers the specified options with custom levels', () => {
+      const customLevels: LumberjackConfigLevels = [LumberjackLevel.Critical];
+      const options = create<name-capitalize-united>Options({ levels: customLevels });
+
+      const <name-camel> = create<name-capitalize-united>WithOptions({ options });
+
+      const actualConfig = <name-camel>.config;
+      const expectedConfig: <name-capitalize-united>InternalConfig = {
+        ...options,
+        // tslint:disable-next-line: no-any
+        levels: customLevels,
+        // tslint:disable-next-line: no-any
+        identifier: jasmine.any(String) as any,
+      };
+      expect(actualConfig).toEqual(expectedConfig);
+    });
+
+    it('registers the specified options with custom identifier', () => {
+      const customIdentifier = 'TestDriverIdentifier';
+      const options = create<name-capitalize-united>Options({ identifier: customIdentifier });
+
+      const <name-camel> = create<name-capitalize-united>WithOptions({ options });
+
+      const actualConfig = <name-camel>.config;
+      const expectedConfig: <name-capitalize-united>InternalConfig = {
+        ...options,
+        // tslint:disable-next-line: no-any
+        levels: jasmine.any(Array) as any,
+        identifier: customIdentifier,
+      };
+      expect(actualConfig).toEqual(expectedConfig);
+    });
+
+    it('gets default options from the log driver config', () => {
       const options = create<name-capitalize-united>Options();
 
       const <name-camel> = create<name-capitalize-united>WithOptions({ options });
 
-      const { levels } = <name-camel>.config;
+      const { levels, identifier } = <name-camel>.config;
       expect(levels).toEqual([LumberjackLevel.Verbose]);
+      expect(identifier).toEqual(<name-capitalize-united>.driverIdentifier);
     });
 
     it('does register the specified log driver configuration when the lumberjack module is imported after the <name-capitalize-united> module', () => {
@@ -162,10 +202,11 @@ describe(<name-capitalize-united>Module.name, () => {
       });
 
       const actualConfig = <name-camel>.config;
-      const expectedConfig: <name-capitalize-united>Config = {
+      const expectedConfig: <name-capitalize-united>InternalConfig = {
         ...options,
         // tslint:disable-next-line: no-any
         levels: jasmine.any(Array) as any,
+        identifier: <name-capitalize-united>.driverIdentifier,
       };
       expect(actualConfig).toEqual(expectedConfig);
     });

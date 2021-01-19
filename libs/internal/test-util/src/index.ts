@@ -1,5 +1,5 @@
 /*
- * Public API Surface of @internal/test-util
+ * Public API surface of @internal/test-util
  */
 
 // Angular
@@ -8,9 +8,6 @@ export * from './lib/angular/resolve-dependency';
 
 // Functions
 export * from './lib/functions/repeat-side-effect';
-
-// Logs
-export * from './lib/logs/driver-log-creators';
 
 // Type checking
 export * from './lib/type-checking/is-class';

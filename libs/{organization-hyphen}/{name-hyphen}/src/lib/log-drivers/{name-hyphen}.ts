@@ -1,12 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
-import { LumberjackLog, LumberjackLogDriver, LumberjackLogDriverLog, LumberjackLogPayload } from '@ngworker/lumberjack';
+import { LumberjackLogDriver, LumberjackLogDriverLog, LumberjackLogPayload } from '@ngworker/lumberjack';
 
 import { <name-camel>ConfigToken } from '../configuration/<name-hyphen>.config.token';
-import { <name-capitalize-united>Config } from '../configuration/<name-hyphen>.config';
+import { <name-capitalize-united>InternalConfig } from '../configuration/<name-hyphen>-internal.config';
 
 @Injectable()
 export class <name-capitalize-united><TPayload extends LumberjackLogPayload | void = void> implements LumberjackLogDriver<TPayload> {
-  constructor(@Inject(<name-camel>ConfigToken) public config: <name-capitalize-united>Config) {}
+  static driverIdentifier = '<name-capitalize-united>'
+  constructor(@Inject(<name-camel>ConfigToken) public config: <name-capitalize-united>InternalConfig) {}
 
   logCritical({ formattedLog, log }: LumberjackLogDriverLog<TPayload>): void {}
 
